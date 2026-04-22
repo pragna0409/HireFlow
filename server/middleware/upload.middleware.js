@@ -3,9 +3,17 @@ import path from "path";
 import fs from "fs";
 import ApiError from "../utils/ApiError.js";
 
-const uploadDir = path.resolve("uploads");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+const isServerless = !!process.env.VERCEL;
+const uploadDir = isServerless
+  ? "/tmp/hireflow-uploads"
+  : path.resolve("uploads");
+
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+} catch (e) {
+  console.warn("Upload dir init failed:", e.message);
 }
 
 const storage = multer.diskStorage({

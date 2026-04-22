@@ -1,5 +1,11 @@
 node_modules/
 dist/
 .env
+.env.local
+.env.*.local
 .DS_Store
 assets/
+.vercel/
+*.log
+server/uploads/*
+!server/uploads/.gitkeep
