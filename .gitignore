@@ -9,3 +9,7 @@ assets/
 *.log
 server/uploads/*
 !server/uploads/.gitkeep
+
+.vercel
+.env.vercel
+.claude/
