@@ -127,7 +127,7 @@ export default function Sidebar({ open, onClose }) {
         {/* User footer */}
         <div className="border-t border-slate-100 p-3 dark:border-slate-800/60">
           <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-            <Avatar name={user?.name} size="md" />
+            <Avatar name={user?.name} src={user?.avatarUrl} size="md" />
             <div className="flex-1 min-w-0">
               <div className="text-sm font-semibold text-slate-900 truncate font-sans dark:text-white">{user?.name}</div>
               <RoleBadge />

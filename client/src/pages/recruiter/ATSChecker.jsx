@@ -307,11 +307,11 @@ export default function ATSChecker() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-700 p-7 text-white shadow-xl shadow-indigo-300/30 dark:shadow-indigo-950/50"
+        className="relative overflow-hidden rounded-3xl shadow-xl shadow-indigo-300/30 dark:shadow-indigo-950/50"
       >
-        <div className="pointer-events-none absolute -top-10 -right-10 h-52 w-52 rounded-full bg-white/10 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 left-1/3 h-36 w-36 rounded-full bg-blue-400/20 blur-2xl" />
-        <div className="relative flex flex-col sm:flex-row sm:items-center gap-5">
+        <img src="/eb5bc71066a7309a504af7b3db8413c1.jpg" alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/90 via-indigo-900/85 to-blue-900/90" />
+        <div className="relative p-7 text-white flex flex-col sm:flex-row sm:items-center gap-5">
           <div className="flex-1">
             <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-indigo-200 mb-1">ATS Checker</p>
             <h1 className="font-serif text-2xl sm:text-3xl font-bold leading-tight">

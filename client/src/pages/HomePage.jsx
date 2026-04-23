@@ -1,34 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Briefcase,
-  Search,
-  ArrowRight,
-  ArrowUpRight,
-  Users,
-  TrendingUp,
-  Shield,
-  CheckCircle2,
-  Sparkles,
-  Building2,
-  MapPin,
-  Bell,
-  Zap,
-  Bookmark,
-  LineChart,
-  FileCheck,
-  UserCog,
-  ShieldCheck,
-  Star,
+  Briefcase, ArrowRight, ArrowUpRight, Users, TrendingUp,
+  CheckCircle2, Sparkles, Building2, Bell, Bookmark,
+  LineChart, FileCheck, UserCog, ShieldCheck, Star,
 } from 'lucide-react';
-import {
-  ResponsiveContainer,
-  LineChart as RLineChart,
-  Line,
-  AreaChart,
-  Area,
-} from 'recharts';
+import { ResponsiveContainer, AreaChart, Area, LineChart as RLineChart, Line } from 'recharts';
 import Button from '../components/ui/Button';
+import { IMG } from '../utils/images';
 
 const stats = [
   { label: 'Active Jobs', value: '2,500+', icon: Briefcase },
@@ -38,49 +17,31 @@ const stats = [
 ];
 
 const steps = [
-  {
-    num: '01',
-    title: 'Create your profile',
-    desc: 'Sign up in under a minute. Add your skills, experience, and what you are looking for.',
-    align: 'left',
-  },
-  {
-    num: '02',
-    title: 'Browse and apply',
-    desc: 'Search jobs by role, stack, salary, or location. Apply in a single click with your saved resume.',
-    align: 'right',
-  },
-  {
-    num: '03',
-    title: 'Track in real time',
-    desc: 'Every status change — shortlisted, interview, offer — lands in your inbox and dashboard.',
-    align: 'left',
-  },
+  { num: '01', title: 'Create your profile', desc: 'Sign up in under a minute. Add your skills, experience, and what you are looking for.', align: 'left' },
+  { num: '02', title: 'Browse and apply', desc: 'Search jobs by role, stack, salary, or location. Apply in a single click with your saved resume.', align: 'right' },
+  { num: '03', title: 'Track in real time', desc: 'Every status change — shortlisted, interview, offer — lands in your inbox and dashboard.', align: 'left' },
 ];
 
-const sparkData = [
-  { v: 3 }, { v: 5 }, { v: 4 }, { v: 7 }, { v: 6 }, { v: 9 }, { v: 8 }, { v: 12 },
-];
+const sparkData = [{ v: 3 }, { v: 5 }, { v: 4 }, { v: 7 }, { v: 6 }, { v: 9 }, { v: 8 }, { v: 12 }];
 
 export default function HomePage() {
   const navigate = useNavigate();
 
   return (
     <>
-      {/* HERO — asymmetric */}
-      <section className="relative overflow-hidden bg-slate-50 dark:bg-slate-950 pt-20 pb-28 sm:pt-28 sm:pb-36">
-        <div className="absolute inset-0 bg-grid-slate bg-[length:32px_32px] opacity-60 dark:opacity-20" />
-        <div className="absolute -top-20 -left-10 h-72 w-72 rounded-full bg-indigo-200/50 dark:bg-indigo-500/10 blur-[110px]" />
-        <div className="absolute top-40 right-1/4 h-80 w-80 rounded-full bg-violet-200/40 dark:bg-violet-500/10 blur-[120px]" />
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-slate-950 pt-20 pb-0 sm:pt-28">
+        {/* Full-bleed background image */}
+        <div className="absolute inset-0">
+          <img src={IMG.hero} alt="" className="h-full w-full object-cover object-center opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/50 to-slate-950" />
+        </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center">
-          {/* Left — content */}
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center pb-24 sm:pb-32">
+          {/* Left */}
           <div className="lg:col-span-7">
-            <motion.span
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 rounded-full bg-white border border-slate-200 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-700 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 shadow-sm"
+            <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/80"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -89,153 +50,79 @@ export default function HomePage() {
               247 hires this week · 12 live now
             </motion.span>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.05 }}
-              className="mt-6 text-4xl sm:text-5xl lg:text-[4.25rem] font-extrabold tracking-tighter text-slate-900 dark:text-white leading-[1.02]"
+            <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
+              className="mt-6 text-4xl sm:text-5xl lg:text-[4.25rem] font-extrabold tracking-tighter text-white leading-[1.02]"
             >
-              Hire <span className="accent-serif font-bold">smarter</span>.<br />
-              Apply <span className="text-gradient">faster</span>.
+              Hire <span className="italic font-bold text-violet-300">smarter</span>.<br />
+              Apply <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">faster</span>.
             </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="mt-6 max-w-xl text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+              className="mt-6 max-w-xl text-lg text-slate-300 leading-relaxed"
             >
-              HireFlow is the role-based hiring platform built for humans. Candidates apply in one
-              click, recruiters move pipelines in real time, admins keep everything honest.
+              HireFlow is the role-based hiring platform built for humans. Candidates apply in one click, recruiters move pipelines in real time.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
               className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-3"
             >
-              <Button
-                size="lg"
-                onClick={() => navigate('/register')}
-                rightIcon={<ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />}
-                className="group"
-              >
+              <Button size="lg" onClick={() => navigate('/register')} rightIcon={<ArrowRight size={16} />} className="group">
                 Get started — it's free
               </Button>
-              <Button
-                size="lg"
-                variant="secondary"
-                onClick={() => navigate('/jobs')}
-                rightIcon={<ArrowUpRight size={16} />}
+              <Button size="lg" variant="secondary" onClick={() => navigate('/jobs')} rightIcon={<ArrowUpRight size={16} />}
+                className="bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30 shadow-none"
               >
                 Browse jobs
               </Button>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.4 }}
               className="mt-10 flex items-center gap-4"
             >
               <div className="flex -space-x-2">
                 {['indigo', 'violet', 'emerald', 'amber', 'rose'].map((c, i) => (
-                  <div
-                    key={i}
-                    className={`h-8 w-8 rounded-full ring-2 ring-white dark:ring-slate-950 bg-gradient-to-br from-${c}-400 to-${c}-600 flex items-center justify-center text-white text-[11px] font-bold`}
-                  >
+                  <div key={i} className={`h-8 w-8 rounded-full ring-2 ring-slate-950 bg-gradient-to-br from-${c}-400 to-${c}-600 flex items-center justify-center text-white text-[11px] font-bold`}>
                     {['A', 'M', 'J', 'K', 'S'][i]}
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-400">
-                Trusted by <span className="font-semibold text-slate-900 dark:text-white">10,000+</span> companies hiring
-              </p>
+              <p className="text-sm text-slate-400">Trusted by <span className="font-semibold text-white">10,000+</span> companies hiring</p>
             </motion.div>
           </div>
 
-          {/* Right — stacked floating cards mock */}
-          <div className="lg:col-span-5 relative h-[420px] hidden lg:block">
-            {/* Card 1: Job post */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: -4 }}
-              animate={{ opacity: 1, y: 0, rotate: -4 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="absolute top-4 left-0 w-[280px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card animate-float"
-              style={{ animationDelay: '0s' }}
+          {/* Right — photo card */}
+          <div className="lg:col-span-5 relative h-[420px] hidden lg:flex items-center justify-center">
+            <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
+              className="relative w-[340px] h-[400px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10"
             >
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white font-bold text-sm">
-                  S
+              <img src={IMG.heroPerson} alt="Professional" className="h-full w-full object-cover object-top" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+              {/* Floating badge */}
+              <div className="absolute bottom-5 left-4 right-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-3.5">
+                <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                  <CheckCircle2 size={13} /> Shortlisted for Product Designer
                 </div>
-                <div className="min-w-0">
-                  <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">Senior Frontend Engineer</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 truncate">Stripe · Remote</div>
-                </div>
-              </div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {['React', 'TypeScript', '+3'].map((t) => (
-                  <span key={t} className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-4 flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-900 dark:text-white">$140k – $180k</span>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400">2h ago</span>
+                <p className="mt-1 text-xs text-white/70 font-mono">Linear · 2 min ago</p>
               </div>
             </motion.div>
 
-            {/* Card 2: Status update */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: 3 }}
-              animate={{ opacity: 1, y: 0, rotate: 3 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="absolute top-36 right-0 w-[260px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card"
+            {/* Floating stat card */}
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
+              className="absolute -right-4 top-16 w-44 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 shadow-xl"
             >
-              <div className="flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                <CheckCircle2 size={14} />
-                Shortlisted
-              </div>
-              <div className="mt-2 text-sm text-slate-900 dark:text-white">
-                You've been shortlisted for <span className="font-semibold">Product Designer</span>
-              </div>
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-xs text-slate-500 dark:text-slate-400">Linear · 2 min ago</span>
-                <button className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
-                  View →
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Card 3: Analytics glimpse */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: 1 }}
-              animate={{ opacity: 1, y: 0, rotate: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute bottom-4 left-10 w-[300px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card animate-float"
-              style={{ animationDelay: '1.5s' }}
-            >
-              <div className="flex items-center justify-between mb-3">
-                <div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Applications this week</div>
-                  <div className="text-2xl font-extrabold text-slate-900 dark:text-white">143</div>
-                </div>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                  <TrendingUp size={12} /> +24%
-                </span>
-              </div>
-              <div className="h-14">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">This week</p>
+              <p className="font-serif text-3xl font-bold text-slate-900 dark:text-white mt-0.5">143</p>
+              <p className="font-sans text-xs text-slate-500 mt-0.5">applications</p>
+              <div className="mt-2 h-10">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={sparkData}>
                     <defs>
-                      <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#6366F1" stopOpacity={0.5} />
+                      <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#6366F1" stopOpacity={0.4} />
                         <stop offset="100%" stopColor="#6366F1" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <Area type="monotone" dataKey="v" stroke="#6366F1" strokeWidth={2} fill="url(#spark)" />
+                    <Area type="monotone" dataKey="v" stroke="#6366F1" strokeWidth={2} fill="url(#sg)" />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -244,16 +131,12 @@ export default function HomePage() {
         </div>
 
         {/* Stats strip */}
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 mt-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur-sm p-3 sm:p-4 shadow-sm">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pb-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-t-2xl border border-b-0 border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm p-3 sm:p-4 shadow-sm">
             {stats.map((s, i) => (
-              <div
-                key={s.label}
-                className={`px-4 py-3 ${i !== 0 ? 'md:border-l border-slate-200 dark:border-slate-800' : ''}`}
-              >
+              <div key={s.label} className={`px-4 py-3 ${i !== 0 ? 'md:border-l border-slate-200 dark:border-slate-800' : ''}`}>
                 <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  <s.icon size={14} />
-                  {s.label}
+                  <s.icon size={14} />{s.label}
                 </div>
                 <div className="mt-1 text-2xl font-extrabold text-slate-900 dark:text-white">{s.value}</div>
               </div>
@@ -262,105 +145,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* BENTO FEATURES */}
+      {/* ── BENTO FEATURES ───────────────────────────────────────────────── */}
       <section className="section-pad bg-white dark:bg-slate-950">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl mb-12">
-            <div className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-3">
-              What's in the box
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Everything you need — <span className="accent-serif">nothing</span> you don't.
+            <div className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-3">What's in the box</div>
+            <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              Everything you need — <span className="italic text-indigo-600 dark:text-indigo-400">nothing</span> you don't.
             </h2>
-            <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-              Purpose-built for the three roles that matter in a hiring pipeline. No bloat, no busywork.
-            </p>
+            <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">Purpose-built for the three roles that matter in a hiring pipeline.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-[auto_auto] gap-4 lg:gap-5 auto-rows-fr">
-            {/* BIG card — 2x2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 p-8 text-white shadow-glow group hover:-translate-y-1 transition-transform duration-300"
+            {/* BIG card — photo bg */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+              className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-2xl shadow-lg group hover:-translate-y-1 transition-transform duration-300 min-h-[320px]"
             >
-              <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
-              <div className="relative">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 backdrop-blur-sm border border-white/20">
+              <img src={IMG.team} alt="Team" className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-slate-900/20" />
+              <div className="relative h-full flex flex-col justify-end p-8 text-white">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 mb-4">
                   <Sparkles size={22} />
                 </div>
-                <h3 className="mt-5 text-2xl font-bold tracking-tight">Smart matching</h3>
-                <p className="mt-2 text-indigo-100/90 leading-relaxed max-w-sm">
+                <h3 className="font-serif text-2xl font-bold tracking-tight">Smart matching</h3>
+                <p className="mt-2 text-white/80 leading-relaxed max-w-sm text-sm">
                   Role-aware ranking pairs candidates with roles by skills, seniority, and stack — not keywords.
                 </p>
-                <div className="mt-8 space-y-3">
-                  {[
-                    { skill: 'React', match: 98 },
-                    { skill: 'TypeScript', match: 94 },
-                    { skill: 'Node.js', match: 87 },
-                  ].map((s, i) => (
-                    <motion.div
-                      key={s.skill}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                      className="flex items-center gap-3"
-                    >
-                      <span className="text-sm font-medium w-28">{s.skill}</span>
+                <div className="mt-6 space-y-2.5">
+                  {[{ skill: 'React', match: 98 }, { skill: 'TypeScript', match: 94 }, { skill: 'Node.js', match: 87 }].map((s) => (
+                    <div key={s.skill} className="flex items-center gap-3">
+                      <span className="font-mono text-xs font-medium w-24 text-white/90">{s.skill}</span>
                       <div className="flex-1 h-1.5 rounded-full bg-white/15 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${s.match}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.3 + i * 0.1 }}
-                          className="h-full bg-white rounded-full"
-                        />
+                        <motion.div initial={{ width: 0 }} whileInView={{ width: `${s.match}%` }} viewport={{ once: true }} transition={{ duration: 0.8 }}
+                          className="h-full bg-white rounded-full" />
                       </div>
-                      <span className="text-xs font-bold tabular-nums">{s.match}%</span>
-                    </motion.div>
+                      <span className="font-mono text-xs font-bold tabular-nums text-white/80">{s.match}%</span>
+                    </div>
                   ))}
                 </div>
               </div>
             </motion.div>
 
-            {/* RBAC */}
-            <BentoCard
-              icon={<ShieldCheck size={20} />}
-              title="Role-based access"
-              desc="Candidate, recruiter, admin — every route guarded."
-              accent="emerald"
-            />
+            <BentoCard icon={<ShieldCheck size={20} />} title="Role-based access" desc="Candidate, recruiter, admin — every route guarded." accent="emerald" />
+            <BentoCard icon={<Bell size={20} />} title="Real-time notifications" desc="Status changes hit your inbox the moment they happen." accent="amber" />
 
-            {/* Real-time */}
-            <BentoCard
-              icon={<Bell size={20} />}
-              title="Real-time notifications"
-              desc="Status changes hit your inbox the moment they happen."
-              accent="amber"
-            />
-
-            {/* Wide card — 2x1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="md:col-span-2 relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 hover:-translate-y-1 hover:border-indigo-300 dark:hover:border-indigo-500/40 hover:shadow-md transition-all duration-300"
+            {/* Wide card — office photo */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
+              className="md:col-span-2 relative overflow-hidden rounded-2xl group hover:-translate-y-1 transition-all duration-300 min-h-[160px]"
             >
-              <div className="flex items-start justify-between gap-4">
+              <img src={IMG.office} alt="Office" className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/50 to-transparent" />
+              <div className="relative p-6 flex items-start justify-between gap-4 h-full">
                 <div className="max-w-[60%]">
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 backdrop-blur-sm text-white">
                     <LineChart size={20} />
                   </div>
-                  <h3 className="mt-4 font-semibold text-slate-900 dark:text-white">Analytics that matter</h3>
-                  <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Time-to-hire, funnel conversion, pipeline health — at a glance.
-                  </p>
+                  <h3 className="mt-4 font-serif font-semibold text-white">Analytics that matter</h3>
+                  <p className="mt-1.5 text-sm text-white/70 leading-relaxed">Time-to-hire, funnel conversion, pipeline health — at a glance.</p>
                 </div>
-                <div className="w-36 h-20 flex-shrink-0">
+                <div className="w-32 h-16 flex-shrink-0 self-center">
                   <ResponsiveContainer width="100%" height="100%">
                     <RLineChart data={sparkData}>
                       <Line type="monotone" dataKey="v" stroke="#f43f5e" strokeWidth={2.5} dot={false} />
@@ -370,67 +213,32 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            <BentoCard
-              icon={<FileCheck size={20} />}
-              title="Resume, one click"
-              desc="Upload once, apply everywhere."
-              accent="indigo"
-            />
-
-            <BentoCard
-              icon={<Bookmark size={20} />}
-              title="Save for later"
-              desc="Bookmark jobs, get notified when status changes."
-              accent="violet"
-            />
+            <BentoCard icon={<FileCheck size={20} />} title="Resume, one click" desc="Upload once, apply everywhere." accent="indigo" />
+            <BentoCard icon={<Bookmark size={20} />} title="Save for later" desc="Bookmark jobs, get notified when status changes." accent="violet" />
           </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS — oversized numerals */}
+      {/* ── HOW IT WORKS ─────────────────────────────────────────────────── */}
       <section className="section-pad bg-slate-50 dark:bg-slate-900/40 overflow-hidden">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="max-w-2xl mb-16">
-            <div className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-3">
-              How it works
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              From sign-up to offer, three steps.
-            </h2>
+            <div className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-3">How it works</div>
+            <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">From sign-up to offer, three steps.</h2>
           </div>
-
           <div className="space-y-16 sm:space-y-20">
-            {steps.map((s, i) => (
-              <motion.div
-                key={s.num}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className={`relative grid sm:grid-cols-12 gap-6 items-center ${
-                  s.align === 'right' ? 'sm:text-right' : ''
-                }`}
+            {steps.map((s) => (
+              <motion.div key={s.num} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+                className={`relative grid sm:grid-cols-12 gap-6 items-center ${s.align === 'right' ? 'sm:text-right' : ''}`}
               >
-                <div
-                  className={`sm:col-span-4 ${
-                    s.align === 'right' ? 'sm:order-2 sm:text-left' : ''
-                  } relative`}
-                >
+                <div className={`sm:col-span-4 ${s.align === 'right' ? 'sm:order-2 sm:text-left' : ''} relative`}>
                   <span className="pointer-events-none select-none text-[9rem] sm:text-[11rem] leading-none font-black tracking-tighter bg-gradient-to-br from-indigo-500/20 to-violet-500/20 dark:from-indigo-400/15 dark:to-violet-400/15 bg-clip-text text-transparent">
                     {s.num}
                   </span>
                 </div>
-                <div
-                  className={`sm:col-span-8 ${
-                    s.align === 'right' ? 'sm:order-1' : ''
-                  }`}
-                >
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-                    {s.title}
-                  </h3>
-                  <p className="mt-3 text-slate-600 dark:text-slate-400 leading-relaxed max-w-md sm:inline-block">
-                    {s.desc}
-                  </p>
+                <div className={`sm:col-span-8 ${s.align === 'right' ? 'sm:order-1' : ''}`}>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{s.title}</h3>
+                  <p className="mt-3 text-slate-600 dark:text-slate-400 leading-relaxed max-w-md sm:inline-block">{s.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -438,92 +246,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ROLES — 3 distinct cards */}
+      {/* ── ROLES ────────────────────────────────────────────────────────── */}
       <section className="section-pad bg-white dark:bg-slate-950">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl mb-12">
-            <div className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-3">
-              Built for three roles
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Pick your side of the table.
-            </h2>
+            <div className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-3">Built for three roles</div>
+            <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Pick your side of the table.</h2>
           </div>
-
           <div className="grid md:grid-cols-3 gap-5">
-            {/* Candidate — light gradient wash */}
-            <RoleCard
-              tone="light"
-              role="candidate"
-              icon={<Users size={20} />}
-              title="Candidates"
-              desc="Find roles that actually match. Apply once, track everything."
-              bullets={['One-click apply with saved resume', 'Real-time status updates', 'Save jobs for later']}
-              cta="Sign up free"
-              onClick={() => navigate('/register')}
-            />
-
-            {/* Recruiter — dark with gradient accent */}
-            <RoleCard
-              tone="dark"
-              role="recruiter"
-              icon={<Briefcase size={20} />}
-              title="Recruiters"
-              desc="Post jobs, review applicants, move pipelines — in one view."
-              bullets={['Create and manage job posts', 'Shortlist with one click', 'Filter by skills and experience']}
-              cta="Post a job"
-              onClick={() => navigate('/register')}
-            />
-
-            {/* Admin — subtle pattern */}
-            <RoleCard
-              tone="pattern"
-              role="admin"
-              icon={<UserCog size={20} />}
-              title="Admins"
-              desc="Approve recruiters, audit activity, and watch the pulse of every hire."
-              bullets={['Approve or ban users', 'Platform-wide analytics', 'Moderate job postings']}
-              cta="Learn more"
-              onClick={() => navigate('/jobs')}
-            />
+            <RoleCard tone="light" icon={<Users size={20} />} title="Candidates" desc="Find roles that actually match. Apply once, track everything."
+              bullets={['One-click apply with saved resume', 'Real-time status updates', 'Save jobs for later']} cta="Sign up free" onClick={() => navigate('/register')} />
+            <RoleCard tone="photo" icon={<Briefcase size={20} />} title="Recruiters" desc="Post jobs, review applicants, move pipelines — in one view."
+              bullets={['Create and manage job posts', 'Shortlist with one click', 'Filter by skills and experience']} cta="Post a job" onClick={() => navigate('/register')} />
+            <RoleCard tone="pattern" icon={<UserCog size={20} />} title="Admins" desc="Approve recruiters, audit activity, and watch the pulse of every hire."
+              bullets={['Approve or ban users', 'Platform-wide analytics', 'Moderate job postings']} cta="Learn more" onClick={() => navigate('/jobs')} />
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section className="section-pad bg-slate-50 dark:bg-slate-900/40">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 px-8 py-14 sm:px-14 sm:py-20 text-center shadow-glow">
-            <div className="absolute -top-20 -left-20 h-60 w-60 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute -bottom-20 -right-20 h-60 w-60 rounded-full bg-violet-400/30 blur-3xl" />
-            <div className="relative">
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+            {/* Background image */}
+            <img src={IMG.abstract} alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/90 via-violet-900/85 to-indigo-900/90" />
+            <div className="relative px-8 py-14 sm:px-14 sm:py-20 text-center">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white mb-5">
-                <Star size={12} className="fill-white" />
-                Free forever for candidates
+                <Star size={12} className="fill-white" /> Free forever for candidates
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
                 Ready to take the next step?
               </h2>
               <p className="mt-4 text-indigo-100 max-w-lg mx-auto leading-relaxed">
                 Join thousands of professionals and companies already using HireFlow.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  onClick={() => navigate('/register')}
-                  rightIcon={<ArrowRight size={16} />}
+                <Button size="lg" variant="secondary" onClick={() => navigate('/register')} rightIcon={<ArrowRight size={16} />}
                   className="bg-white text-slate-900 border-0 hover:bg-slate-100"
-                >
-                  Get started
-                </Button>
-                <Button
-                  size="lg"
-                  onClick={() => navigate('/jobs')}
+                >Get started</Button>
+                <Button size="lg" onClick={() => navigate('/jobs')}
                   className="bg-white/10 text-white border border-white/25 hover:bg-white/20 hover:border-white/40 shadow-none"
-                >
-                  Browse jobs
-                </Button>
+                >Browse jobs</Button>
               </div>
             </div>
           </div>
@@ -539,80 +303,59 @@ function BentoCard({ icon, title, desc, accent = 'indigo' }) {
     emerald: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400',
     amber: 'bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400',
     violet: 'bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-400',
-    rose: 'bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400',
   };
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45 }}
+    <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45 }}
       className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 hover:-translate-y-1 hover:border-indigo-300 dark:hover:border-indigo-500/40 hover:shadow-md transition-all duration-300"
     >
-      <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${accentMap[accent]}`}>
-        {icon}
-      </div>
-      <h3 className="mt-4 font-semibold text-slate-900 dark:text-white">{title}</h3>
+      <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${accentMap[accent]}`}>{icon}</div>
+      <h3 className="mt-4 font-serif font-semibold text-slate-900 dark:text-white">{title}</h3>
       <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{desc}</p>
     </motion.div>
   );
 }
 
 function RoleCard({ tone, icon, title, desc, bullets, cta, onClick }) {
-  const tones = {
-    light:
-      'bg-gradient-to-br from-indigo-50 via-white to-violet-50 dark:from-indigo-950/40 dark:via-slate-900 dark:to-violet-950/40 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white',
-    dark:
-      'bg-slate-900 dark:bg-slate-950 border-slate-900 dark:border-slate-800 text-white relative overflow-hidden',
-    pattern:
-      'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white relative overflow-hidden',
-  };
-
-  const titleCls = tone === 'dark' ? 'text-white' : 'text-slate-900 dark:text-white';
-  const descCls = tone === 'dark' ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400';
-  const iconBox =
-    tone === 'dark'
-      ? 'bg-gradient-to-br from-indigo-500 to-violet-500 text-white'
-      : 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400';
-  const bulletCls = tone === 'dark' ? 'text-slate-300' : 'text-slate-700 dark:text-slate-300';
+  const isPhoto = tone === 'photo';
+  const isDark = tone === 'dark';
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className={`group rounded-2xl border p-7 hover:-translate-y-1 transition-all duration-300 ${tones[tone]}`}
+    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+      className={`group relative rounded-2xl border overflow-hidden p-7 hover:-translate-y-1 transition-all duration-300 ${
+        isPhoto ? 'border-0 text-white min-h-[320px]' :
+        isDark ? 'bg-slate-900 dark:bg-slate-950 border-slate-900 text-white' :
+        'bg-gradient-to-br from-indigo-50 via-white to-violet-50 dark:from-indigo-950/40 dark:via-slate-900 dark:to-violet-950/40 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white'
+      }`}
     >
-      {tone === 'dark' && (
-        <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-gradient-to-br from-indigo-500/40 to-violet-500/40 blur-3xl pointer-events-none" />
+      {isPhoto && (
+        <>
+          <img src={IMG.heroPerson} alt="" className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-slate-900/30" />
+        </>
       )}
       {tone === 'pattern' && (
         <div className="absolute inset-0 bg-grid-slate bg-[length:24px_24px] opacity-60 dark:opacity-20 pointer-events-none" />
       )}
       <div className="relative">
-        <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${iconBox}`}>
-          {icon}
-        </div>
-        <h3 className={`mt-5 text-xl font-bold tracking-tight ${titleCls}`}>{title}</h3>
-        <p className={`mt-2 text-sm leading-relaxed ${descCls}`}>{desc}</p>
+        <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${
+          isPhoto || isDark ? 'bg-white/15 backdrop-blur-sm text-white border border-white/20' : 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400'
+        }`}>{icon}</div>
+        <h3 className={`mt-5 font-serif text-xl font-bold tracking-tight ${isPhoto || isDark ? 'text-white' : 'text-slate-900 dark:text-white'}`}>{title}</h3>
+        <p className={`mt-2 text-sm leading-relaxed ${isPhoto || isDark ? 'text-white/70' : 'text-slate-600 dark:text-slate-400'}`}>{desc}</p>
         <ul className="mt-5 space-y-2">
           {bullets.map((b) => (
-            <li key={b} className={`flex items-start gap-2 text-sm ${bulletCls}`}>
-              <CheckCircle2 size={16} className={tone === 'dark' ? 'text-indigo-400' : 'text-indigo-500'} />
+            <li key={b} className={`flex items-start gap-2 text-sm ${isPhoto || isDark ? 'text-white/80' : 'text-slate-700 dark:text-slate-300'}`}>
+              <CheckCircle2 size={16} className={isPhoto || isDark ? 'text-indigo-300' : 'text-indigo-500'} />
               <span>{b}</span>
             </li>
           ))}
         </ul>
-        <button
-          type="button"
-          onClick={onClick}
-          className={`mt-6 inline-flex items-center gap-1.5 text-sm font-semibold ${
-            tone === 'dark' ? 'text-white hover:text-indigo-300' : 'text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300'
-          } transition-colors`}
+        <button type="button" onClick={onClick}
+          className={`mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors ${
+            isPhoto || isDark ? 'text-white hover:text-indigo-300' : 'text-indigo-600 dark:text-indigo-400 hover:text-indigo-700'
+          }`}
         >
-          {cta}
-          <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          {cta} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
         </button>
       </div>
     </motion.div>

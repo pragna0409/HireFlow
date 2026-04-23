@@ -99,34 +99,36 @@ export default function CandidateDashboard() {
 
         {/* [1] Hero greeting — spans 8 cols, 2 rows */}
         <motion.div {...up(0)}
-          className="col-span-2 lg:col-span-8 row-span-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 p-7 text-white shadow-xl shadow-indigo-300/30 dark:shadow-indigo-950/50 flex flex-col justify-between min-h-[180px]"
+          className="col-span-2 lg:col-span-8 row-span-2 relative overflow-hidden rounded-3xl shadow-xl shadow-indigo-300/30 dark:shadow-indigo-950/50 flex flex-col justify-between min-h-[180px]"
         >
-          <div className="pointer-events-none absolute -top-12 -right-12 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-0 left-1/4 h-40 w-40 rounded-full bg-violet-400/20 blur-2xl" />
-          <div className="relative">
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-indigo-200 mb-2">
-              Candidate · Overview
-            </p>
-            <h1 className="font-serif text-3xl sm:text-4xl font-bold leading-tight">
-              Hey, <span className="italic text-violet-200">{firstName}</span> 👋
-            </h1>
-            <p className="mt-2 font-sans text-sm text-indigo-100/75 max-w-xs">
-              {apps.length === 0
-                ? "Your journey starts here. Browse jobs and fire off that first application."
-                : `You've got ${apps.length} application${apps.length > 1 ? 's' : ''} out there. Keep the momentum going.`}
-            </p>
-          </div>
-          <div className="relative mt-5 flex gap-2 flex-wrap">
-            <Link to="/jobs">
-              <button className="inline-flex items-center gap-1.5 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-sm px-4 py-2 text-sm font-semibold text-white transition-all">
-                Browse Jobs <ArrowRight size={14} />
-              </button>
-            </Link>
-            <Link to="/candidate/applications">
-              <button className="inline-flex items-center gap-1.5 rounded-xl border border-white/25 hover:bg-white/10 px-4 py-2 text-sm font-medium text-white/80 transition-all">
-                My Applications
-              </button>
-            </Link>
+          <img src="/fdae61d27dc882e6f0cd48d9552bba9c.jpg" alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/85 via-violet-900/75 to-indigo-900/80" />
+          <div className="relative p-7 flex flex-col justify-between h-full text-white">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-indigo-200 mb-2">
+                Candidate · Overview
+              </p>
+              <h1 className="font-serif text-3xl sm:text-4xl font-bold leading-tight">
+                Hey, <span className="italic text-violet-200">{firstName}</span> 👋
+              </h1>
+              <p className="mt-2 font-sans text-sm text-indigo-100/75 max-w-xs">
+                {apps.length === 0
+                  ? "Your journey starts here. Browse jobs and fire off that first application."
+                  : `You've got ${apps.length} application${apps.length > 1 ? 's' : ''} out there. Keep the momentum going.`}
+              </p>
+            </div>
+            <div className="mt-5 flex gap-2 flex-wrap">
+              <Link to="/jobs">
+                <button className="inline-flex items-center gap-1.5 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-sm px-4 py-2 text-sm font-semibold text-white transition-all">
+                  Browse Jobs <ArrowRight size={14} />
+                </button>
+              </Link>
+              <Link to="/candidate/applications">
+                <button className="inline-flex items-center gap-1.5 rounded-xl border border-white/25 hover:bg-white/10 px-4 py-2 text-sm font-medium text-white/80 transition-all">
+                  My Applications
+                </button>
+              </Link>
+            </div>
           </div>
         </motion.div>
 

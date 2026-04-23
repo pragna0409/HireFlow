@@ -65,7 +65,7 @@ export default function Navbar() {
                 to={dashPath}
                 className="flex items-center gap-2 rounded-lg pl-1 pr-2.5 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
-                <Avatar name={user?.name} size="sm" />
+                <Avatar name={user?.name} src={user?.avatarUrl} size="sm" />
                 <div className="hidden lg:flex flex-col leading-tight">
                   <span className="text-xs font-semibold text-slate-900 dark:text-white truncate max-w-[120px]">
                     {user?.name}

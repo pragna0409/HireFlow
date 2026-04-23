@@ -6,4 +6,8 @@ export const authApi = {
   me: () => api.get('/auth/me').then((r) => r.data),
   logout: () => api.post('/auth/logout').then((r) => r.data),
   updateProfile: (data) => api.put('/auth/update-profile', data).then((r) => r.data),
+  updateProfileForm: (formData) =>
+    api.put('/auth/update-profile', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }).then((r) => r.data),
 };
