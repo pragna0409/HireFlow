@@ -76,9 +76,12 @@ export default function CandidateDashboard() {
   const firstName = user?.name?.split(' ')[0] || 'there';
   const recentApps = apps.slice(0, 4);
 
+  const waitlistCount = apps.filter((a) => a.status === 'waitlist').length;
+
   const stats = [
     { label: 'Applied',   value: apps.length, icon: FileText, color: 'text-indigo-500', bg: 'bg-indigo-50 dark:bg-indigo-500/10' },
     { label: 'In Review', value: apps.filter((a) => ['under_review','shortlisted'].includes(a.status)).length, icon: Clock, color: 'text-amber-500', bg: 'bg-amber-50 dark:bg-amber-500/10' },
+    { label: 'Waitlisted', value: waitlistCount, icon: Bookmark, color: 'text-slate-700', bg: 'bg-slate-100 dark:bg-slate-800/40' },
     { label: 'Saved',     value: savedCount, icon: Bookmark, color: 'text-emerald-500', bg: 'bg-emerald-50 dark:bg-emerald-500/10' },
     { label: 'Hired',     value: apps.filter((a) => a.status === 'hired').length, icon: TrendingUp, color: 'text-violet-500', bg: 'bg-violet-50 dark:bg-violet-500/10' },
   ];

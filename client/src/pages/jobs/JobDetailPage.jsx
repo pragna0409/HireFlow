@@ -13,6 +13,7 @@ import {
   Send,
   Building2,
   Mail,
+  MessageSquare,
   CheckCircle2,
   FileText,
   ChevronDown,
@@ -236,6 +237,16 @@ export default function JobDetailPage() {
             {!isAuthenticated && (
               <Button as={Link} to="/login" leftIcon={<Send size={16} />}>
                 Sign in to Apply
+              </Button>
+            )}
+            {isAuthenticated && user?.role === 'candidate' && (recruiter._id || recruiter.id || recruiter) && (
+              <Button
+                as={Link}
+                to={`/messages/${recruiter._id || recruiter.id || recruiter}`}
+                variant="ghost"
+                leftIcon={<MessageSquare size={16} />}
+              >
+                Message recruiter
               </Button>
             )}
           </div>

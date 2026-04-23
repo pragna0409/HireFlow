@@ -85,7 +85,7 @@ export const applicantsForJob = asyncHandler(async (req, res) => {
 
 export const updateStatus = asyncHandler(async (req, res) => {
   const { status, note } = req.body;
-  const allowed = ["applied", "under_review", "shortlisted", "rejected", "hired"];
+  const allowed = ["applied", "under_review", "shortlisted", "waitlist", "rejected", "hired"];
   if (!allowed.includes(status)) throw new ApiError(400, "Invalid status");
 
   const application = await Application.findById(req.params.id).populate("job");

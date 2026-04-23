@@ -17,6 +17,7 @@ export const APPLICATION_STATUSES = [
   { value: 'applied', label: 'Applied' },
   { value: 'under_review', label: 'Under Review' },
   { value: 'shortlisted', label: 'Shortlisted' },
+  { value: 'waitlist', label: 'Waitlisted' },
   { value: 'rejected', label: 'Rejected' },
   { value: 'hired', label: 'Hired' },
 ];
@@ -42,6 +43,13 @@ export const STATUS_STYLES = {
     border: 'border-indigo-200',
     dot: 'bg-indigo-500',
     label: 'Shortlisted',
+  },
+  waitlist: {
+    bg: 'bg-slate-100',
+    text: 'text-slate-700',
+    border: 'border-slate-200',
+    dot: 'bg-slate-500',
+    label: 'Waitlisted',
   },
   rejected: {
     bg: 'bg-rose-50',

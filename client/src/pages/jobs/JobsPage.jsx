@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Briefcase } from 'lucide-react';
 import { jobApi } from '../../api/job.api';
 import useAuth from '../../hooks/useAuth';
@@ -20,6 +21,7 @@ const defaultFilters = {
 };
 
 export default function JobsPage() {
+  const navigate = useNavigate();
   const { isAuthenticated, user } = useAuth();
   const [filters, setFilters] = useState(defaultFilters);
   const [jobs, setJobs] = useState([]);
@@ -136,6 +138,7 @@ export default function JobsPage() {
                     job={job}
                     saved={savedIds.has(job._id || job.id)}
                     onToggleSave={isAuthenticated && user?.role === 'candidate' ? handleToggleSave : undefined}
+                    onMessage={isAuthenticated && user?.role === 'candidate' && (job.recruiter?._id || job.recruiter?.id || job.recruiter) ? () => navigate(`/messages/${job.recruiter?._id || job.recruiter?.id || job.recruiter}`) : undefined}
                   />
                 ))}
               </div>

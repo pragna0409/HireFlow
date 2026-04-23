@@ -4,7 +4,7 @@ const statusHistorySchema = new mongoose.Schema(
   {
     status: {
       type: String,
-      enum: ["applied", "under_review", "shortlisted", "rejected", "hired"],
+      enum: ["applied", "under_review", "shortlisted", "waitlist", "rejected", "hired"],
       required: true,
     },
     changedAt: { type: Date, default: Date.now },
@@ -27,7 +27,7 @@ const applicationSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["applied", "under_review", "shortlisted", "rejected", "hired"],
+      enum: ["applied", "under_review", "shortlisted", "waitlist", "rejected", "hired"],
       default: "applied",
     },
     resumeUrl: { type: String },
