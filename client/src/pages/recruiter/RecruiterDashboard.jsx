@@ -8,6 +8,7 @@ import {
   TrendingUp,
   ArrowRight,
   Plus,
+  BadgeCheck,
 } from 'lucide-react';
 import useAuth from '../../hooks/useAuth';
 import { jobApi } from '../../api/job.api';
@@ -51,10 +52,17 @@ export default function RecruiterDashboard() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Welcome, {user?.name?.split(' ')[0] || 'Recruiter'}! 🚀
-          </h1>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+          <div className="flex items-center gap-2">
+            <h1 className="font-serif text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Welcome, {user?.name?.split(' ')[0] || 'Recruiter'}! 🚀
+            </h1>
+            {user?.isVerified && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-sky-50 dark:bg-sky-500/10 border border-sky-200 dark:border-sky-500/20 px-2.5 py-1 font-mono text-[10px] font-semibold text-sky-600 dark:text-sky-400">
+                <BadgeCheck size={12} /> Verified
+              </span>
+            )}
+          </div>
+          <p className="mt-1 font-sans text-sm text-slate-500 dark:text-slate-400">
             Manage your job postings and applicants.
           </p>
         </div>

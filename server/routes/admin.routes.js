@@ -1,7 +1,7 @@
 import express from "express";
 import {
   listUsers,
-  approveRecruiter,
+  verifyRecruiter,
   banUser,
   deleteJob,
   analytics,
@@ -14,7 +14,7 @@ const router = express.Router();
 router.use(protect, authorizeRoles("admin"));
 
 router.get("/users", listUsers);
-router.patch("/approve-recruiter/:id", approveRecruiter);
+router.patch("/verify-recruiter/:id", verifyRecruiter);
 router.patch("/ban-user/:id", banUser);
 router.delete("/job/:id", deleteJob);
 router.get("/analytics", analytics);

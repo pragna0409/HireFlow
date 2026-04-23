@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Briefcase, LayoutDashboard, FileText, Bookmark, User,
   Users, BarChart3, LogOut, Plus, Shield, Building2,
-  ChevronRight, MessageSquare,
+  ChevronRight, MessageSquare, BadgeCheck,
 } from 'lucide-react';
 import useAuth from '../../hooks/useAuth';
 import Avatar from '../ui/Avatar';
@@ -129,7 +129,12 @@ export default function Sidebar({ open, onClose }) {
           <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/50">
             <Avatar name={user?.name} src={user?.avatarUrl} size="md" />
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold text-slate-900 truncate font-sans dark:text-white">{user?.name}</div>
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="text-sm font-semibold text-slate-900 truncate font-sans dark:text-white">{user?.name}</div>
+                {user?.isVerified && (
+                  <BadgeCheck size={14} className="shrink-0 text-sky-500" title="Verified recruiter" />
+                )}
+              </div>
               <RoleBadge />
             </div>
             <button

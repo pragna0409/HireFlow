@@ -17,7 +17,6 @@ export const register = asyncHandler(async (req, res) => {
   if (existing) throw new ApiError(400, "Email already registered");
 
   const assignedRole = role === "recruiter" ? "recruiter" : "candidate";
-  const isApproved = assignedRole === "candidate";
 
   const user = await User.create({
     name,
@@ -27,7 +26,7 @@ export const register = asyncHandler(async (req, res) => {
     company: assignedRole === "recruiter" ? company : undefined,
     skills: skills || [],
     experience: experience || 0,
-    isApproved,
+    isApproved: true, // all users active immediately; admin can verify recruiters separately
   });
 
   const token = generateToken(user._id);

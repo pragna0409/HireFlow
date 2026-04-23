@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Bookmark, MapPin, Clock, DollarSign, Briefcase } from 'lucide-react';
+import { Bookmark, MapPin, Clock, DollarSign, Briefcase, BadgeCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Badge from '../ui/Badge';
 import Avatar from '../ui/Avatar';
@@ -31,7 +31,12 @@ export default function JobCard({ job, saved, onToggleSave, onApply, compact }) 
             >
               {job.title}
             </Link>
-            <div className="mt-0.5 text-sm text-slate-500 truncate dark:text-slate-400">{company}</div>
+            <div className="mt-0.5 flex items-center gap-1 text-sm text-slate-500 truncate dark:text-slate-400">
+              <span>{company}</span>
+              {job.recruiter?.isVerified && (
+                <BadgeCheck size={13} className="shrink-0 text-sky-500" title="Verified recruiter" />
+              )}
+            </div>
           </div>
         </div>
         {onToggleSave && (

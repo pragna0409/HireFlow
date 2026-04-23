@@ -40,7 +40,8 @@ const userSchema = new mongoose.Schema(
     bio: { type: String },
     location: { type: String },
     company: { type: String },
-    isApproved: { type: Boolean, default: true },
+    isApproved: { type: Boolean, default: true },  // legacy — always true, no approval gate
+    isVerified: { type: Boolean, default: false },  // admin-granted verified badge
     isBanned: { type: Boolean, default: false },
     savedJobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
   },
@@ -51,13 +52,6 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
-});
-
-userSchema.pre("validate", function (next) {
-  if (this.isNew && this.role === "recruiter" && this.isApproved === undefined) {
-    this.isApproved = false;
-  }
   next();
 });
 

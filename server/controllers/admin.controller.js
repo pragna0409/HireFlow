@@ -37,15 +37,19 @@ export const listUsers = asyncHandler(async (req, res) => {
   });
 });
 
-export const approveRecruiter = asyncHandler(async (req, res) => {
+export const verifyRecruiter = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   if (!user) throw new ApiError(404, "User not found");
   if (user.role !== "recruiter")
     throw new ApiError(400, "User is not a recruiter");
 
-  user.isApproved = true;
+  user.isVerified = !user.isVerified;
   await user.save();
-  res.json({ success: true, message: "Recruiter approved", data: user });
+  res.json({
+    success: true,
+    message: user.isVerified ? "Recruiter verified" : "Verification removed",
+    data: user,
+  });
 });
 
 export const banUser = asyncHandler(async (req, res) => {

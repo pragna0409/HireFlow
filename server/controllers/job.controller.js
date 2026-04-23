@@ -43,7 +43,7 @@ export const listJobs = asyncHandler(async (req, res) => {
 
   const [jobs, total] = await Promise.all([
     Job.find(filter)
-      .populate("recruiter", "name company avatarUrl")
+      .populate("recruiter", "name company avatarUrl isVerified")
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(Number(limit)),
@@ -69,7 +69,7 @@ export const getJob = asyncHandler(async (req, res) => {
     req.params.id,
     { $inc: { views: 1 } },
     { new: true }
-  ).populate("recruiter", "name company avatarUrl email bio location");
+  ).populate("recruiter", "name company avatarUrl email bio location isVerified");
 
   if (!job) throw new ApiError(404, "Job not found");
 
@@ -178,14 +178,14 @@ export const toggleSaveJob = asyncHandler(async (req, res) => {
 export const myPostedJobs = asyncHandler(async (req, res) => {
   const jobs = await Job.find({ recruiter: req.user._id })
     .sort({ createdAt: -1 })
-    .populate("recruiter", "name company avatarUrl");
+    .populate("recruiter", "name company avatarUrl isVerified");
   res.json({ success: true, data: jobs });
 });
 
 export const mySavedJobs = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id).populate({
     path: "savedJobs",
-    populate: { path: "recruiter", select: "name company avatarUrl" },
+    populate: { path: "recruiter", select: "name company avatarUrl isVerified" },
   });
   res.json({ success: true, data: user.savedJobs });
 });
