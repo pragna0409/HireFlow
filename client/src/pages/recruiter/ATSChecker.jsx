@@ -12,7 +12,7 @@ import { scoreAll } from '../../utils/ats';
 import Avatar from '../../components/ui/Avatar';
 import Spinner from '../../components/ui/Spinner';
 import { SkeletonCard } from '../../components/ui/Skeleton';
-import { timeAgo } from '../../utils/formatters';
+import { buildResumeUrl, timeAgo } from '../../utils/formatters';
 import toast from 'react-hot-toast';
 
 const COLOR = {
@@ -216,7 +216,7 @@ function CandidateCard({ app, rank, job }) {
               <div className="flex items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
                 {(app.resumeUrl || candidate.resumeUrl) && (
                   <a
-                    href={app.resumeUrl || candidate.resumeUrl}
+                    href={buildResumeUrl(app.resumeUrl || candidate.resumeUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 font-mono text-[11px] text-slate-600 dark:text-slate-400 hover:border-indigo-300 hover:text-indigo-600 transition-all"

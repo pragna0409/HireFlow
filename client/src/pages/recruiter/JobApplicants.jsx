@@ -23,7 +23,7 @@ import Select from '../../components/ui/Select';
 import Spinner from '../../components/ui/Spinner';
 import { SkeletonCard } from '../../components/ui/Skeleton';
 import { APPLICATION_STATUSES, STATUS_STYLES } from '../../utils/constants';
-import { timeAgo } from '../../utils/formatters';
+import { buildResumeUrl, timeAgo } from '../../utils/formatters';
 import toast from 'react-hot-toast';
 
 export default function JobApplicants() {
@@ -214,7 +214,7 @@ export default function JobApplicants() {
                         {(app.resumeUrl || candidate.resumeUrl) && (
                           <Button
                             as="a"
-                            href={app.resumeUrl || candidate.resumeUrl}
+                            href={buildResumeUrl(app.resumeUrl || candidate.resumeUrl)}
                             target="_blank"
                             rel="noopener noreferrer"
                             variant="ghost"

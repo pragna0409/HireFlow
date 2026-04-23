@@ -50,3 +50,19 @@ export function truncate(str, n = 120) {
   if (!str) return '';
   return str.length > n ? `${str.slice(0, n)}…` : str;
 }
+
+export function buildResumeUrl(url) {
+  if (!url) return url;
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+
+  const apiUrl = import.meta.env.VITE_API_URL || '/api/v1';
+  let origin = window.location.origin;
+
+  try {
+    origin = new URL(apiUrl, window.location.origin).origin;
+  } catch (err) {
+    origin = window.location.origin;
+  }
+
+  return `${origin}${url}`;
+}
