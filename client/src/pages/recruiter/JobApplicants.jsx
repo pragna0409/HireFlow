@@ -211,17 +211,17 @@ export default function JobApplicants() {
                         {updating === (app._id || app.id) && (
                           <Spinner size="sm" className="text-indigo-600" />
                         )}
-                        {candidate.resumeUrl && (
+                        {(app.resumeUrl || candidate.resumeUrl) && (
                           <Button
                             as="a"
-                            href={candidate.resumeUrl}
+                            href={app.resumeUrl || candidate.resumeUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             variant="ghost"
                             size="sm"
                             leftIcon={<ExternalLink size={12} />}
                           >
-                            Resume
+                            View resume
                           </Button>
                         )}
                         <Button
