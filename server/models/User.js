@@ -29,6 +29,13 @@ const userSchema = new mongoose.Schema(
     skills: [{ type: String, trim: true }],
     experience: { type: Number, default: 0 },
     resumeUrl: { type: String },
+    resumes: [
+      {
+        name: { type: String, required: true },
+        url: { type: String, required: true },
+        uploadedAt: { type: Date, default: Date.now },
+      },
+    ],
     avatarUrl: { type: String },
     bio: { type: String },
     location: { type: String },

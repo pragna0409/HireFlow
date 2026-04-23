@@ -77,7 +77,7 @@ export default function Sidebar({ open, onClose }) {
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-violet-500 text-white shadow-glow group-hover:scale-105 transition-transform">
               <Briefcase size={18} strokeWidth={2.5} />
             </span>
-            <span className="text-base font-bold tracking-tight dark:text-white">HireFlow</span>
+            <span className="font-serif text-base font-bold tracking-tight dark:text-white">HireFlow</span>
           </button>
         </div>
 
@@ -90,7 +90,7 @@ export default function Sidebar({ open, onClose }) {
               onClick={onClose}
               className={({ isActive }) =>
                 cn(
-                  'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all',
+                  'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all font-sans',
                   isActive
                     ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400'
                     : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white',
@@ -118,7 +118,7 @@ export default function Sidebar({ open, onClose }) {
           <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-900">
             <Avatar name={user?.name} size="md" />
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold text-slate-900 truncate dark:text-white">{user?.name}</div>
+              <div className="text-sm font-semibold text-slate-900 truncate font-sans dark:text-white">{user?.name}</div>
               <RoleBadge />
             </div>
             <button

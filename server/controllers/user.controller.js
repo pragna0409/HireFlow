@@ -77,3 +77,34 @@ export const listUsers = asyncHandler(async (req, res) => {
     },
   });
 });
+
+// ── Resume library ──────────────────────────────────────────────────────────
+
+export const addResume = asyncHandler(async (req, res) => {
+  if (!req.file) throw new ApiError(400, "No file uploaded");
+  const { name } = req.body;
+  const url = `/uploads/${req.file.filename}`;
+  const label = name?.trim() || req.file.originalname;
+
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    { $push: { resumes: { name: label, url, uploadedAt: new Date() } } },
+    { new: true }
+  );
+  res.status(201).json({ success: true, data: user.resumes });
+});
+
+export const deleteResume = asyncHandler(async (req, res) => {
+  const { resumeId } = req.params;
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    { $pull: { resumes: { _id: resumeId } } },
+    { new: true }
+  );
+  res.json({ success: true, data: user.resumes });
+});
+
+export const getResumes = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id).select("resumes");
+  res.json({ success: true, data: user.resumes || [] });
+});

@@ -114,6 +114,23 @@ input[type='number']::-webkit-outer-spin-button {
   .btn-shine:active {
     transform: scale(0.98);
   }
+
+  /* Typography role helpers */
+  .heading {
+    @apply font-serif font-bold tracking-tight;
+  }
+  .label-mono {
+    @apply font-mono text-xs uppercase tracking-widest;
+  }
+  .body-text {
+    @apply font-sans leading-relaxed;
+  }
+  .accent-cursive {
+    @apply font-cursive text-indigo-600 dark:text-indigo-400;
+  }
+  .display-fantasy {
+    @apply font-fantasy tracking-wide;
+  }
 }
 
 @keyframes shimmer {

@@ -14,9 +14,12 @@ import {
   Building2,
   Mail,
   CheckCircle2,
+  FileText,
+  ChevronDown,
 } from 'lucide-react';
 import { jobApi } from '../../api/job.api';
 import { applicationApi } from '../../api/application.api';
+import { resumeApi } from '../../api/resume.api';
 import useAuth from '../../hooks/useAuth';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
@@ -39,6 +42,8 @@ export default function JobDetailPage() {
   const [coverLetter, setCoverLetter] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [applied, setApplied] = useState(false);
+  const [resumes, setResumes] = useState([]);
+  const [selectedResume, setSelectedResume] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -67,6 +72,11 @@ export default function JobDetailPage() {
         }
       })
       .catch(() => {});
+    resumeApi.list().then((res) => {
+      const list = res?.data || res || [];
+      setResumes(Array.isArray(list) ? list : []);
+      if (list.length > 0) setSelectedResume(list[0]._id);
+    }).catch(() => {});
   }, [isAuthenticated, user?.role, id]);
 
   const handleToggleSave = async () => {
@@ -90,7 +100,12 @@ export default function JobDetailPage() {
     }
     setSubmitting(true);
     try {
-      await applicationApi.apply({ jobId: id, coverLetter });
+      const chosen = resumes.find((r) => r._id === selectedResume);
+      await applicationApi.apply({
+        jobId: id,
+        coverLetter,
+        resumeUrl: chosen?.url || undefined,
+      });
       setApplied(true);
       setApplyOpen(false);
       toast.success('Application submitted!');
@@ -315,9 +330,39 @@ export default function JobDetailPage() {
           </>
         }
       >
+        {/* Resume selector */}
+        <div className="mb-4">
+          <label className="block font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">
+            Resume
+          </label>
+          {resumes.length === 0 ? (
+            <div className="rounded-xl border border-dashed border-slate-200 dark:border-slate-700 p-4 text-center">
+              <FileText size={16} className="mx-auto mb-1.5 text-slate-300" />
+              <p className="font-sans text-xs text-slate-400">No resumes uploaded yet.</p>
+              <a href="/candidate/dashboard" className="mt-1 inline-block font-mono text-[11px] text-indigo-500 hover:underline">
+                Upload from dashboard →
+              </a>
+            </div>
+          ) : (
+            <div className="relative">
+              <select
+                value={selectedResume}
+                onChange={(e) => setSelectedResume(e.target.value)}
+                className="w-full appearance-none rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2.5 pr-9 font-sans text-sm text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                {resumes.map((r) => (
+                  <option key={r._id} value={r._id}>{r.name}</option>
+                ))}
+                <option value="">Use profile resume (default)</option>
+              </select>
+              <ChevronDown size={14} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            </div>
+          )}
+        </div>
+
         <Textarea
           label="Cover Letter (optional)"
-          rows={6}
+          rows={5}
           value={coverLetter}
           onChange={(e) => setCoverLetter(e.target.value)}
           placeholder="Tell the recruiter why you're a great fit for this role…"
