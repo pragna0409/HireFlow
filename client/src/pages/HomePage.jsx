@@ -9,6 +9,7 @@ import {
 import { ResponsiveContainer, AreaChart, Area, LineChart as RLineChart, Line } from 'recharts';
 import Button from '../components/ui/Button';
 import Modal from '../components/ui/Modal';
+import GooeyNav from '../components/ui/GooeyNav';
 import { IMG } from '../utils/images';
 
 const steps = [
