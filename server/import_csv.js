@@ -53,7 +53,8 @@ const run = async () => {
         email: 'system@hireflow.com',
         password: 'Password@123',
         role: 'recruiter',
-        isApproved: true
+        isApproved: true,
+        isVerified: true,
       });
     }
 

@@ -77,10 +77,6 @@ export const getJob = asyncHandler(async (req, res) => {
 });
 
 export const createJob = asyncHandler(async (req, res) => {
-  if (req.user.role === "recruiter" && !req.user.isApproved) {
-    throw new ApiError(403, "Recruiter account not yet approved");
-  }
-
   const payload = {
     ...req.body,
     recruiter: req.user._id,

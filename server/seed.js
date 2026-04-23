@@ -39,6 +39,7 @@ const run = async () => {
       location: "Bangalore, India",
       bio: "Hiring for engineering roles at TechNova.",
       isApproved: true,
+      isVerified: true,
     });
 
     const recruiter2 = await User.create({
@@ -50,6 +51,7 @@ const run = async () => {
       location: "Remote",
       bio: "Leading talent acquisition at CloudPeak.",
       isApproved: true,
+      isVerified: true,
     });
 
     const candidate1 = await User.create({

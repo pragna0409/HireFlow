@@ -26,7 +26,8 @@ export const register = asyncHandler(async (req, res) => {
     company: assignedRole === "recruiter" ? company : undefined,
     skills: skills || [],
     experience: experience || 0,
-    isApproved: true, // all users active immediately; admin can verify recruiters separately
+    isApproved: true, // all users active immediately
+    isVerified: true, // recruiter accounts are verified immediately
   });
 
   const token = generateToken(user._id);

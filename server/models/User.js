@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
     location: { type: String },
     company: { type: String },
     isApproved: { type: Boolean, default: true },  // legacy — always true, no approval gate
-    isVerified: { type: Boolean, default: false },  // admin-granted verified badge
+    isVerified: { type: Boolean, default: true },  // recruiters are verified by default
     isBanned: { type: Boolean, default: false },
     savedJobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
   },
