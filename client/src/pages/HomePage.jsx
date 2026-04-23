@@ -30,14 +30,14 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-20 pb-0 sm:pt-28">
-        {/* Full-bleed background image — bleeds into stats strip */}
+      <section className="relative overflow-hidden pt-20 pb-0 sm:pt-28 bg-slate-950">
+        {/* Full-bleed background image */}
         <div className="absolute inset-0">
-          <img src={IMG.hero} alt="" className="h-full w-full object-cover object-center" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/70 to-white dark:to-slate-950" />
+          <img src={IMG.hero} alt="" className="h-full w-full object-cover object-center opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/60 to-slate-950/90" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center pb-24 sm:pb-32">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center pb-16 sm:pb-20">
           {/* Left */}
           <div className="lg:col-span-7">
             <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
@@ -80,13 +80,24 @@ export default function HomePage() {
               className="mt-10 flex items-center gap-4"
             >
               <div className="flex -space-x-2">
-                {['indigo', 'violet', 'emerald', 'amber', 'rose'].map((c, i) => (
-                  <div key={i} className={`h-8 w-8 rounded-full ring-2 ring-slate-950 bg-gradient-to-br from-${c}-400 to-${c}-600 flex items-center justify-center text-white text-[11px] font-bold`}>
-                    {['A', 'M', 'J', 'K', 'S'][i]}
+                {[
+                  { bg: '#818cf8', l: 'A' },
+                  { bg: '#a78bfa', l: 'M' },
+                  { bg: '#34d399', l: 'J' },
+                  { bg: '#fbbf24', l: 'K' },
+                  { bg: '#fb7185', l: 'S' },
+                ].map(({ bg, l }, i) => (
+                  <div key={i}
+                    style={{ background: bg }}
+                    className="h-8 w-8 rounded-full ring-2 ring-slate-900 flex items-center justify-center text-white text-[11px] font-bold"
+                  >
+                    {l}
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-slate-400">Trusted by <span className="font-semibold text-white">10,000+</span> companies hiring</p>
+              <p className="text-sm text-slate-300">
+                Trusted by <span className="font-semibold text-white">10,000+</span> companies hiring
+              </p>
             </motion.div>
           </div>
 
@@ -97,7 +108,6 @@ export default function HomePage() {
             >
               <img src={IMG.heroPerson} alt="Professional" className="h-full w-full object-cover object-top" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-              {/* Floating badge */}
               <div className="absolute bottom-5 left-4 right-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-3.5">
                 <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
                   <CheckCircle2 size={13} /> Shortlisted for Product Designer
@@ -106,7 +116,6 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            {/* Floating stat card */}
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
               className="absolute -right-4 top-16 w-44 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 shadow-xl"
             >
@@ -130,12 +139,12 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Stats strip — sits flush, blends into next section */}
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pb-0">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 rounded-t-2xl border border-b-0 border-white/20 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm">
+        {/* Stats strip — solid card lifts out of the dark section */}
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 rounded-t-2xl overflow-hidden border border-b-0 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_-8px_32px_rgba(0,0,0,0.18)]">
             {stats.map((s, i) => (
-              <div key={s.label} className={`px-6 py-5 ${i !== 0 ? 'border-l border-white/30 dark:border-slate-800' : ''}`}>
-                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <div key={s.label} className={`px-6 py-5 ${i !== 0 ? 'border-l border-slate-100 dark:border-slate-800' : ''}`}>
+                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
                   <s.icon size={14} />{s.label}
                 </div>
                 <div className="mt-1 text-2xl font-extrabold text-slate-900 dark:text-white">{s.value}</div>
@@ -146,7 +155,7 @@ export default function HomePage() {
       </section>
 
       {/* ── BENTO FEATURES ───────────────────────────────────────────────── */}
-      <section className="section-pad bg-white dark:bg-slate-950">
+      <section className="section-pad bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl mb-12">
             <div className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-3">What's in the box</div>
