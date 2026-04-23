@@ -10,6 +10,7 @@ import { applicationApi } from '../../api/application.api';
 import { jobApi } from '../../api/job.api';
 import { scoreAll } from '../../utils/ats';
 import Avatar from '../../components/ui/Avatar';
+import PdfViewer from '../../components/ui/PdfViewer';
 import Modal from '../../components/ui/Modal';
 import Spinner from '../../components/ui/Spinner';
 import { SkeletonCard } from '../../components/ui/Skeleton';
@@ -267,22 +268,18 @@ function CandidateCard({ app, rank, job }) {
                     </button>
                   }
                 >
-                  {previewUrl ? (
-                    previewUrl.toLowerCase().endsWith('.pdf') ? (
-                      <iframe
-                        src={previewUrl}
-                        title={previewName}
-                        className="w-full h-[60vh] rounded-2xl border border-slate-200 dark:border-slate-700"
-                      />
-                    ) : (
-                      <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center">
-                        <p className="font-semibold text-slate-900 dark:text-slate-100">Preview not available for this file type.</p>
-                        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Use the button below to open it in a new tab.</p>
-                      </div>
-                    )
+                {previewUrl ? (
+                  previewUrl.toLowerCase().endsWith('.pdf') ? (
+                    <PdfViewer url={previewUrl} title={previewName} />
                   ) : (
-                    <div className="p-6 text-center text-slate-500">Loading resume...</div>
-                  )}
+                    <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center">
+                      <p className="font-semibold text-slate-900 dark:text-slate-100">Preview not available for this file type.</p>
+                      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Use the button below to open it in a new tab.</p>
+                    </div>
+                  )
+                ) : (
+                  <div className="p-6 text-center text-slate-500">Loading resume...</div>
+                )}
                 </Modal>
               </div>
             </div>
