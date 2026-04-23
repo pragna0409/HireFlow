@@ -9,6 +9,7 @@ import {
 import { ResponsiveContainer, AreaChart, Area, LineChart as RLineChart, Line } from 'recharts';
 import Button from '../components/ui/Button';
 import Modal from '../components/ui/Modal';
+import GooeyNav from '../components/ui/GooeyNav';
 import { IMG } from '../utils/images';
 
 const stats = [
@@ -25,6 +26,12 @@ const steps = [
 ];
 
 const sparkData = [{ v: 3 }, { v: 5 }, { v: 4 }, { v: 7 }, { v: 6 }, { v: 9 }, { v: 8 }, { v: 12 }];
+
+const gooeyNavItems = [
+  { label: "Home", href: "#" },
+  { label: "About", href: "#" },
+  { label: "Contact", href: "#" },
+];
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -272,6 +279,27 @@ export default function HomePage() {
               bullets={['Create and manage job posts', 'Shortlist with one click', 'Filter by skills and experience']} cta="Post a job" onClick={() => navigate('/register')} />
             <RoleCard tone="photo" img={IMG.abstract} icon={<UserCog size={20} />} title="Admins" desc="Approve recruiters, audit activity, and watch the pulse of every hire."
               bullets={['Approve or ban users', 'Platform-wide analytics', 'Moderate job postings']} cta="Sign up" onClick={() => setAdminModalOpen(true)} />
+          </div>
+        </div>
+      </section>
+
+      {/* ── GOOEY NAV DEMO ───────────────────────────────────────────────── */}
+      <section className="section-pad bg-slate-900">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+          <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-8">
+            Interactive Navigation Demo
+          </h2>
+          <div style={{ height: '200px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <GooeyNav
+              items={gooeyNavItems}
+              particleCount={15}
+              particleDistances={[90, 10]}
+              particleR={100}
+              initialActiveIndex={0}
+              animationTime={600}
+              timeVariance={300}
+              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+            />
           </div>
         </div>
       </section>

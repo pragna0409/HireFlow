@@ -4,6 +4,7 @@ import { Menu } from 'lucide-react';
 import Sidebar from './Sidebar';
 import NotificationDropdown from '../common/NotificationDropdown';
 import Avatar from '../ui/Avatar';
+import ThemeToggle from '../ui/ThemeToggle';
 import useAuth from '../../hooks/useAuth';
 
 export default function DashboardLayout() {
@@ -25,6 +26,7 @@ export default function DashboardLayout() {
             <Menu size={18} />
           </button>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <NotificationDropdown />
             <Avatar name={user?.name} size="sm" />
           </div>

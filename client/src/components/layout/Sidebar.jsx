@@ -8,6 +8,7 @@ import {
 import useAuth from '../../hooks/useAuth';
 import Avatar from '../ui/Avatar';
 import SuggestedJobs from '../sidebar/SuggestedJobs';
+import ThemeToggle from '../ui/ThemeToggle';
 import { messageApi } from '../../api/message.api';
 import { cn } from '../../utils/cn';
 
@@ -137,14 +138,17 @@ export default function Sidebar({ open, onClose }) {
               </div>
               <RoleBadge />
             </div>
-            <button
-              onClick={logout}
-              className="rounded-lg p-2 text-slate-500 hover:bg-white hover:text-rose-600 transition-colors dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-rose-400"
-              aria-label="Sign out"
-              title="Sign out"
-            >
-              <LogOut size={16} />
-            </button>
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
+              <button
+                onClick={logout}
+                className="rounded-lg p-2 text-slate-500 hover:bg-white hover:text-rose-600 transition-colors dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-rose-400"
+                aria-label="Sign out"
+                title="Sign out"
+              >
+                <LogOut size={16} />
+              </button>
+            </div>
           </div>
           {user?.role === 'admin' && (
             <button

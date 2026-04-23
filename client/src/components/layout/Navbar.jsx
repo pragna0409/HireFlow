@@ -6,6 +6,7 @@ import Button from '../ui/Button';
 import Avatar from '../ui/Avatar';
 import NotificationDropdown from '../common/NotificationDropdown';
 import ThemeToggle from '../ui/ThemeToggle';
+import GooeyNav from '../ui/GooeyNav';
 import { cn } from '../../utils/cn';
 
 export default function Navbar() {
