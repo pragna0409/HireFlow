@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import {
   Briefcase, ArrowRight, ArrowUpRight, Users, TrendingUp,
   CheckCircle2, Sparkles, Building2, Bell, Bookmark,
@@ -7,6 +8,7 @@ import {
 } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, LineChart as RLineChart, Line } from 'recharts';
 import Button from '../components/ui/Button';
+import Modal from '../components/ui/Modal';
 import { IMG } from '../utils/images';
 
 const stats = [
@@ -26,6 +28,7 @@ const sparkData = [{ v: 3 }, { v: 5 }, { v: 4 }, { v: 7 }, { v: 6 }, { v: 9 }, {
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const [adminModalOpen, setAdminModalOpen] = useState(false);
 
   return (
     <>
@@ -268,7 +271,7 @@ export default function HomePage() {
             <RoleCard tone="photo" img={IMG.heroPerson} icon={<Briefcase size={20} />} title="Recruiters" desc="Post jobs, review applicants, move pipelines — in one view."
               bullets={['Create and manage job posts', 'Shortlist with one click', 'Filter by skills and experience']} cta="Post a job" onClick={() => navigate('/register')} />
             <RoleCard tone="photo" img={IMG.abstract} icon={<UserCog size={20} />} title="Admins" desc="Approve recruiters, audit activity, and watch the pulse of every hire."
-              bullets={['Approve or ban users', 'Platform-wide analytics', 'Moderate job postings']} cta="Learn more" onClick={() => navigate('/jobs')} />
+              bullets={['Approve or ban users', 'Platform-wide analytics', 'Moderate job postings']} cta="Sign up" onClick={() => setAdminModalOpen(true)} />
           </div>
         </div>
       </section>
@@ -302,6 +305,37 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <Modal
+        open={adminModalOpen}
+        onClose={() => setAdminModalOpen(false)}
+        title="NOTE ONLY FOR Elipsonic Testers"
+        size="md"
+        footer={
+          <Button onClick={() => { setAdminModalOpen(false); navigate('/register'); }}>
+            OK
+          </Button>
+        }
+      >
+        <div className="space-y-4">
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            Admin access is restricted to authorized Elipsonic testers only.
+          </p>
+          <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-4 space-y-2">
+            <div className="flex justify-between">
+              <span className="font-medium text-slate-900 dark:text-white">Email:</span>
+              <span className="font-mono text-sm text-slate-700 dark:text-slate-300">admin@hireflow.com</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="font-medium text-slate-900 dark:text-white">Password:</span>
+              <span className="font-mono text-sm text-slate-700 dark:text-slate-300">Admin@123</span>
+            </div>
+          </div>
+          <p className="text-sm text-red-600 dark:text-red-400 font-medium">
+            Do not misuse this account. It is for testing purposes only.
+          </p>
+        </div>
+      </Modal>
     </>
   );
 }
