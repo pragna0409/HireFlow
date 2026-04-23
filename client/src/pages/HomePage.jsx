@@ -34,7 +34,8 @@ export default function HomePage() {
     <>
       {/* ── HERO — white-mode design ───────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-slate-50 dark:bg-slate-950 pt-20 pb-28 sm:pt-28 sm:pb-36">
-        <img src={IMG.hero} alt="Dark hero background" className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-0 dark:opacity-100 transition-opacity duration-700" />
+        <img src={IMG.hero} alt="Dark hero background" className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-0 dark:opacity-40 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-black/50 dark:bg-black/60" />
         <div className="absolute inset-0 bg-grid-slate bg-[length:32px_32px] opacity-60 dark:opacity-20" />
         <div className="absolute -top-20 -left-10 h-72 w-72 rounded-full bg-indigo-200/50 dark:bg-indigo-500/10 blur-[110px]" />
         <div className="absolute top-40 right-1/4 h-80 w-80 rounded-full bg-violet-200/40 dark:bg-violet-500/10 blur-[120px]" />
