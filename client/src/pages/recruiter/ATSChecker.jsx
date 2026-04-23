@@ -10,6 +10,7 @@ import { applicationApi } from '../../api/application.api';
 import { jobApi } from '../../api/job.api';
 import { scoreAll } from '../../utils/ats';
 import Avatar from '../../components/ui/Avatar';
+import Modal from '../../components/ui/Modal';
 import Spinner from '../../components/ui/Spinner';
 import { SkeletonCard } from '../../components/ui/Skeleton';
 import { buildResumeUrl, timeAgo } from '../../utils/formatters';
@@ -65,10 +66,25 @@ function MiniBar({ score, max, color }) {
 
 function CandidateCard({ app, rank, job }) {
   const [open, setOpen] = useState(false);
+  const [showResumeViewer, setShowResumeViewer] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [previewName, setPreviewName] = useState('');
   const { ats } = app;
   const candidate = app.candidate || {};
   const c = COLOR[ats.color] || COLOR.amber;
   const bd = ats.breakdown;
+
+  const handleOpenResume = (url, name) => {
+    setPreviewUrl(url);
+    setPreviewName(name || 'Resume');
+    setShowResumeViewer(true);
+  };
+
+  const handleCloseResume = () => {
+    setShowResumeViewer(false);
+    setPreviewUrl('');
+    setPreviewName('');
+  };
 
   return (
     <motion.div
@@ -215,14 +231,16 @@ function CandidateCard({ app, rank, job }) {
               {/* Actions */}
               <div className="flex items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
                 {(app.resumeUrl || candidate.resumeUrl) && (
-                  <a
-                    href={buildResumeUrl(app.resumeUrl || candidate.resumeUrl)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={() => handleOpenResume(
+                      buildResumeUrl(app.resumeUrl || candidate.resumeUrl),
+                      candidate.name || 'Resume',
+                    )}
                     className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 font-mono text-[11px] text-slate-600 dark:text-slate-400 hover:border-indigo-300 hover:text-indigo-600 transition-all"
                   >
                     <ExternalLink size={11} /> View Resume
-                  </a>
+                  </button>
                 )}
                 {candidate.email && (
                   <a
@@ -233,6 +251,39 @@ function CandidateCard({ app, rank, job }) {
                   </a>
                 )}
                 <span className="ml-auto font-mono text-[10px] text-slate-400">Applied {timeAgo(app.createdAt)}</span>
+                <Modal
+                  open={showResumeViewer}
+                  onClose={handleCloseResume}
+                  title={`Resume preview — ${previewName}`}
+                  description="Preview the file directly in the dashboard."
+                  size="xl"
+                  footer={
+                    <button
+                      type="button"
+                      onClick={() => window.open(previewUrl, '_blank', 'noopener')}
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 font-mono text-[11px] text-slate-600 dark:text-slate-400 hover:border-indigo-300 hover:text-indigo-600 transition-all"
+                    >
+                      Open in new tab
+                    </button>
+                  }
+                >
+                  {previewUrl ? (
+                    previewUrl.toLowerCase().endsWith('.pdf') ? (
+                      <iframe
+                        src={previewUrl}
+                        title={previewName}
+                        className="w-full h-[60vh] rounded-2xl border border-slate-200 dark:border-slate-700"
+                      />
+                    ) : (
+                      <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center">
+                        <p className="font-semibold text-slate-900 dark:text-slate-100">Preview not available for this file type.</p>
+                        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Use the button below to open it in a new tab.</p>
+                      </div>
+                    )
+                  ) : (
+                    <div className="p-6 text-center text-slate-500">Loading resume...</div>
+                  )}
+                </Modal>
               </div>
             </div>
           </motion.div>

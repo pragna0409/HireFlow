@@ -25,6 +25,7 @@ import PostJob from './pages/recruiter/PostJob';
 import EditJob from './pages/recruiter/EditJob';
 import JobApplicants from './pages/recruiter/JobApplicants';
 import ATSChecker from './pages/recruiter/ATSChecker';
+import RecruiterATS from './pages/recruiter/RecruiterATS';
 
 // Admin pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -89,6 +90,7 @@ export default function App() {
         <Route path="/recruiter/jobs/new" element={<PostJob />} />
         <Route path="/recruiter/jobs/:id/edit" element={<EditJob />} />
         <Route path="/recruiter/jobs/:id/applicants" element={<JobApplicants />} />
+        <Route path="/recruiter/ats" element={<RecruiterATS />} />
         <Route path="/recruiter/jobs/:id/ats" element={<ATSChecker />} />
       </Route>
 

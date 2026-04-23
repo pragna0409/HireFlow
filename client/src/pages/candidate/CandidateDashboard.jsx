@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import useAuth from '../../hooks/useAuth';
 import { applicationApi } from '../../api/application.api';
-import { jobApi } from '../../api/job.api';
 import { resumeApi } from '../../api/resume.api';
 import Badge from '../../components/ui/Badge';
 import { SkeletonCard } from '../../components/ui/Skeleton';
@@ -24,7 +23,6 @@ const up = (d = 0) => ({
 export default function CandidateDashboard() {
   const { user } = useAuth();
   const [apps, setApps] = useState([]);
-  const [savedCount, setSavedCount] = useState(0);
   const [resumes, setResumes] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -33,13 +31,10 @@ export default function CandidateDashboard() {
   useEffect(() => {
     Promise.all([
       applicationApi.mine().catch(() => ({ data: [] })),
-      jobApi.mySaved().catch(() => ({ data: [] })),
       resumeApi.list().catch(() => ({ data: [] })),
-    ]).then(([appRes, savedRes, resumeRes]) => {
+    ]).then(([appRes, resumeRes]) => {
       const list = appRes?.data || appRes || [];
       setApps(Array.isArray(list) ? list : []);
-      const saved = savedRes?.data || savedRes || [];
-      setSavedCount(Array.isArray(saved) ? saved.length : 0);
       const rv = resumeRes?.data || resumeRes || [];
       setResumes(Array.isArray(rv) ? rv : []);
       setLoading(false);
@@ -82,7 +77,6 @@ export default function CandidateDashboard() {
     { label: 'Applied',   value: apps.length, icon: FileText, color: 'text-indigo-500', bg: 'bg-indigo-50 dark:bg-indigo-500/10' },
     { label: 'In Review', value: apps.filter((a) => ['under_review','shortlisted'].includes(a.status)).length, icon: Clock, color: 'text-amber-500', bg: 'bg-amber-50 dark:bg-amber-500/10' },
     { label: 'Waitlisted', value: waitlistCount, icon: Bookmark, color: 'text-slate-700', bg: 'bg-slate-100 dark:bg-slate-800/40' },
-    { label: 'Saved',     value: savedCount, icon: Bookmark, color: 'text-emerald-500', bg: 'bg-emerald-50 dark:bg-emerald-500/10' },
     { label: 'Hired',     value: apps.filter((a) => a.status === 'hired').length, icon: TrendingUp, color: 'text-violet-500', bg: 'bg-violet-50 dark:bg-violet-500/10' },
   ];
 

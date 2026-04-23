@@ -85,6 +85,7 @@ export default function MessagesPage() {
   const [loadingThreads, setLoadingThreads] = useState(true);
   const [loadingMsgs, setLoadingMsgs] = useState(false);
   const [search, setSearch] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
   const bottomRef = useRef(null);
   const pollRef = useRef(null);
   const inputRef = useRef(null);
@@ -97,14 +98,22 @@ export default function MessagesPage() {
     finally { setLoadingThreads(false); }
   }, []);
 
-  const loadConversation = useCallback(async (uid) => {
+  const loadConversation = useCallback(async (uid, { showLoading = true } = {}) => {
     if (!uid) return;
-    setLoadingMsgs(true);
+    if (showLoading) {
+      setLoadingMsgs(true);
+    } else {
+      setRefreshing(true);
+    }
+
     try {
       const res = await messageApi.conversation(uid);
       setMessages(res?.data || []);
     } catch { toast.error('Failed to load messages'); }
-    finally { setLoadingMsgs(false); }
+    finally {
+      if (showLoading) setLoadingMsgs(false);
+      else setRefreshing(false);
+    }
   }, []);
 
   // Initial load
@@ -118,13 +127,13 @@ export default function MessagesPage() {
     }
   }, [activeId, loadConversation, navigate]);
 
-  // Poll for new messages every 4s
+  // Poll for new messages periodically
   useEffect(() => {
     if (!activeId) return;
     pollRef.current = setInterval(() => {
-      loadConversation(activeId);
+      loadConversation(activeId, { showLoading: false });
       loadThreads();
-    }, 4000);
+    }, 10000);
     return () => clearInterval(pollRef.current);
   }, [activeId, loadConversation, loadThreads]);
 

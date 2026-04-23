@@ -10,6 +10,7 @@ import Avatar from '../ui/Avatar';
 import SuggestedJobs from '../sidebar/SuggestedJobs';
 import ThemeToggle from '../ui/ThemeToggle';
 import { messageApi } from '../../api/message.api';
+import { jobApi } from '../../api/job.api';
 import { cn } from '../../utils/cn';
 
 function navFor(role) {
@@ -27,6 +28,7 @@ function navFor(role) {
       { to: '/recruiter/dashboard', label: 'Overview', icon: LayoutDashboard },
       { to: '/recruiter/jobs', label: 'My Jobs', icon: Briefcase },
       { to: '/recruiter/jobs/new', label: 'Post a Job', icon: Plus },
+      { to: '/recruiter/ats', label: 'ATS Checker', icon: BarChart3 },
       { to: '/jobs', label: 'Browse Jobs', icon: Building2 },
       { to: '/messages', label: 'Messages', icon: MessageSquare, badge: true },
     ];
@@ -46,6 +48,7 @@ export default function Sidebar({ open, onClose }) {
   const navigate = useNavigate();
   const items = navFor(user?.role);
   const [unread, setUnread] = useState(0);
+  const [atsCount, setAtsCount] = useState(0);
 
   useEffect(() => {
     if (!user) return;
@@ -54,6 +57,25 @@ export default function Sidebar({ open, onClose }) {
     fetch();
     const id = setInterval(fetch, 10000);
     return () => clearInterval(id);
+  }, [user]);
+
+  // Load ATS-related count for recruiter sidebar badge (number of posted jobs)
+  useEffect(() => {
+    if (user?.role !== 'recruiter') return;
+    let mounted = true;
+    const loadAtsCount = async () => {
+      try {
+        const res = await jobApi.myPosted();
+        const list = res?.data ?? res ?? [];
+        if (mounted) setAtsCount(Array.isArray(list) ? list.length : 0);
+      } catch {
+        // ignore errors for badge count
+      }
+    };
+    loadAtsCount();
+    return () => {
+      mounted = false;
+    };
   }, [user]);
 
   const RoleBadge = () => (
@@ -88,19 +110,19 @@ export default function Sidebar({ open, onClose }) {
 
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0.5">
-          {items.map(({ to, label, icon: Icon, badge }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={to !== '/messages'}
-              onClick={onClose}
+        {items.map(({ to, label, icon: Icon, badge }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={to !== '/messages'}
+            onClick={onClose}
               className={({ isActive }) =>
                 cn(
                   'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all font-sans',
                   isActive
                     ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400'
                     : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white',
-                )
+              )
               }
             >
               {({ isActive }) => (
@@ -110,12 +132,17 @@ export default function Sidebar({ open, onClose }) {
                   )}
                   <Icon size={17} className={cn(isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500 dark:text-slate-400')} />
                   <span className="flex-1">{label}</span>
+                  {to === '/recruiter/ats' && atsCount > 0 && (
+                    <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-indigo-600 px-1 font-mono text-[10px] font-bold text-white ml-2">
+                      {atsCount}
+                    </span>
+                  )}
                   {badge && unread > 0 && (
                     <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-indigo-600 px-1 font-mono text-[10px] font-bold text-white">
                       {unread > 99 ? '99+' : unread}
                     </span>
                   )}
-                  {isActive && !badge && <ChevronRight size={14} className="text-indigo-500" />}
+                  {isActive && !badge && <ChevronRight size={14} className="text-indigo-500" />} 
                 </>
               )}
             </NavLink>
