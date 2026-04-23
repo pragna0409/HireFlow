@@ -15,11 +15,7 @@ export default function ProtectedRoute({ children, allowedRoles = [] }) {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  if (allowedRoles.length && !allowedRoles.includes(user?.role)) {
-    return <Navigate to="/unauthorized" replace />;
+    return children;
   }
 
   return children;

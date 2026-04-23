@@ -47,8 +47,6 @@ api.interceptors.response.use(
       }
     } else if (status >= 500) {
       toast.error('Server error — please try again later.');
-    } else if (status === 403) {
-      toast.error(message || 'You do not have permission to do that.');
     }
 
     return Promise.reject({ ...error, message });

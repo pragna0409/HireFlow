@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import {
   Briefcase, ArrowRight, ArrowUpRight, Users, TrendingUp,
   CheckCircle2, Sparkles, Building2, Bell, Bookmark,
@@ -11,13 +12,6 @@ import Button from '../components/ui/Button';
 import Modal from '../components/ui/Modal';
 import GooeyNav from '../components/ui/GooeyNav';
 import { IMG } from '../utils/images';
-
-const stats = [
-  { label: 'Active Jobs', value: '2,500+', icon: Briefcase },
-  { label: 'Companies', value: '500+', icon: Building2 },
-  { label: 'Candidates', value: '10K+', icon: Users },
-  { label: 'Hired', value: '1,200+', icon: TrendingUp },
-];
 
 const steps = [
   { num: '01', title: 'Create your profile', desc: 'Sign up in under a minute. Add your skills, experience, and what you are looking for.', align: 'left' },
@@ -35,23 +29,36 @@ const gooeyNavItems = [
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const { theme } = useTheme();
   const [adminModalOpen, setAdminModalOpen] = useState(false);
 
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-20 pb-0 sm:pt-28 bg-slate-950">
+      <section className={`relative overflow-hidden pt-20 pb-0 sm:pt-28 ${theme === 'dark' ? 'bg-slate-950' : 'bg-white'}`}>
         {/* Full-bleed background image */}
         <div className="absolute inset-0">
-          <img src={IMG.hero} alt="" className="h-full w-full object-cover object-center opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/60 to-slate-950/90" />
+          {theme === 'dark' && (
+            <img src={IMG.hero} alt="" className="h-full w-full object-cover object-center opacity-40" />
+          )}
+          <div
+            className={`absolute inset-0 ${
+              theme === 'dark'
+                ? 'bg-gradient-to-b from-slate-950/50 via-slate-950/60 to-slate-950/90'
+                : 'bg-gradient-to-b from-white/90 via-white/95 to-white'
+            }`}
+          />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center pb-16 sm:pb-20">
           {/* Left */}
           <div className="lg:col-span-7">
             <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/80"
+              className={`inline-flex items-center gap-2 rounded-full backdrop-blur-sm px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider ${
+                theme === 'dark'
+                  ? 'bg-white/10 border border-white/20 text-white/80'
+                  : 'bg-slate-100 border border-slate-200 text-slate-600'
+              }`}
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -61,14 +68,18 @@ export default function HomePage() {
             </motion.span>
 
             <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
-              className="mt-6 text-4xl sm:text-5xl lg:text-[4.25rem] font-extrabold tracking-tighter text-white leading-[1.02]"
+              className={`mt-6 text-4xl sm:text-5xl lg:text-[4.25rem] font-extrabold tracking-tighter leading-[1.02] ${
+                theme === 'dark' ? 'text-white' : 'text-slate-900'
+              }`}
             >
               Hire <span className="italic font-bold text-violet-300">smarter</span>.<br />
               Apply <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">faster</span>.
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-              className="mt-6 max-w-xl text-lg text-slate-300 leading-relaxed"
+              className={`mt-6 max-w-xl text-lg leading-relaxed ${
+                theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+              }`}
             >
               HireFlow is the role-based hiring platform built for humans. Candidates apply in one click, recruiters move pipelines in real time.
             </motion.p>
@@ -80,7 +91,7 @@ export default function HomePage() {
                 Get started — it's free
               </Button>
               <Button size="lg" variant="secondary" onClick={() => navigate('/jobs')} rightIcon={<ArrowUpRight size={16} />}
-                className="bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30 shadow-none"
+                className={`${theme === 'dark' ? 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30' : 'bg-slate-100 text-slate-900 border-slate-200 hover:bg-slate-200 hover:border-slate-300'} shadow-none`}
               >
                 Browse jobs
               </Button>
@@ -105,63 +116,51 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-slate-300">
-                Trusted by <span className="font-semibold text-white">10,000+</span> companies hiring
+              <p className={`text-sm ${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}`}>
+                Trusted by <span className={`font-semibold ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>10,000+</span> companies hiring
               </p>
             </motion.div>
           </div>
 
-          {/* Right — photo card */}
-          <div className="lg:col-span-5 relative h-[420px] hidden lg:flex items-center justify-center">
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
-              className="relative w-[340px] h-[400px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10"
-            >
-              <img src={IMG.heroPerson} alt="Professional" className="h-full w-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-              <div className="absolute bottom-5 left-4 right-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-3.5">
-                <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
-                  <CheckCircle2 size={13} /> Shortlisted for Product Designer
+          {theme === 'dark' && (
+            <div className="lg:col-span-5 relative h-[420px] hidden lg:flex items-center justify-center">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
+                className="relative w-[340px] h-[400px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10"
+              >
+                <img src={IMG.heroPerson} alt="Professional" className="h-full w-full object-cover object-top" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-4 right-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-3.5">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                    <CheckCircle2 size={13} /> Shortlisted for Product Designer
+                  </div>
+                  <p className="mt-1 text-xs text-white/70 font-mono">Linear · 2 min ago</p>
                 </div>
-                <p className="mt-1 text-xs text-white/70 font-mono">Linear · 2 min ago</p>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute -right-4 top-16 w-44 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 shadow-xl"
-            >
-              <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">This week</p>
-              <p className="font-serif text-3xl font-bold text-slate-900 dark:text-white mt-0.5">143</p>
-              <p className="font-sans text-xs text-slate-500 mt-0.5">applications</p>
-              <div className="mt-2 h-10">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={sparkData}>
-                    <defs>
-                      <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#6366F1" stopOpacity={0.4} />
-                        <stop offset="100%" stopColor="#6366F1" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <Area type="monotone" dataKey="v" stroke="#6366F1" strokeWidth={2} fill="url(#sg)" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </motion.div>
-          </div>
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
+                className="absolute -right-4 top-16 w-44 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 shadow-xl"
+              >
+                <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">This week</p>
+                <p className="font-serif text-3xl font-bold text-slate-900 dark:text-white mt-0.5">143</p>
+                <p className="font-sans text-xs text-slate-500 mt-0.5">applications</p>
+                <div className="mt-2 h-10">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={sparkData}>
+                      <defs>
+                        <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#6366F1" stopOpacity={0.4} />
+                          <stop offset="100%" stopColor="#6366F1" stopOpacity={0} />
+                        </linearGradient>
+                      </defs>
+                      <Area type="monotone" dataKey="v" stroke="#6366F1" strokeWidth={2} fill="url(#sg)" />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+              </motion.div>
+            </div>
+          )}
         </div>
 
-        {/* Stats strip — solid card lifts out of the dark section */}
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 rounded-t-2xl overflow-hidden border border-b-0 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_-8px_32px_rgba(0,0,0,0.18)]">
-            {stats.map((s, i) => (
-              <div key={s.label} className={`px-6 py-5 ${i !== 0 ? 'border-l border-slate-100 dark:border-slate-800' : ''}`}>
-                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                  <s.icon size={14} />{s.label}
-                </div>
-                <div className="mt-1 text-2xl font-extrabold text-slate-900 dark:text-white">{s.value}</div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ── BENTO FEATURES ───────────────────────────────────────────────── */}

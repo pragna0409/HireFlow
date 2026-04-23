@@ -36,7 +36,6 @@ import MessagesPage from './pages/messages/MessagesPage';
 
 // Other
 import NotFoundPage from './pages/NotFoundPage';
-import UnauthorizedPage from './pages/UnauthorizedPage';
 
 function PublicLayout() {
   return (
@@ -60,7 +59,6 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/jobs/:id" element={<JobDetailPage />} />
-        <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
 
