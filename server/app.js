@@ -5,6 +5,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 import path from "path";
+import { uploadDir } from "./middleware/upload.middleware.js";
 
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
@@ -36,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 
-app.use("/uploads", express.static(path.resolve("uploads")));
+app.use("/uploads", express.static(path.resolve(uploadDir)));
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,

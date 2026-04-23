@@ -4,7 +4,7 @@ import fs from "fs";
 import ApiError from "../utils/ApiError.js";
 
 const isServerless = !!process.env.VERCEL;
-const uploadDir = isServerless
+export const uploadDir = isServerless
   ? "/tmp/hireflow-uploads"
   : path.resolve("uploads");
 
