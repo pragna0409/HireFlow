@@ -35,7 +35,10 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className={`relative overflow-hidden pt-20 pb-0 sm:pt-28 ${theme === 'dark' ? 'bg-slate-950' : 'bg-white'}`}>
+      <section
+        className={`relative overflow-hidden pt-20 pb-0 sm:pt-28 ${theme === 'dark' ? 'bg-slate-950' : 'bg-white'}`}
+        style={theme === 'light' ? { backgroundImage: 'radial-gradient(circle at top right, rgba(99,102,241,0.08), transparent 35%)' } : undefined}
+      >
         {/* Full-bleed background image */}
         <div className="absolute inset-0">
           {theme === 'dark' && (
@@ -78,7 +81,7 @@ export default function HomePage() {
 
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
               className={`mt-6 max-w-xl text-lg leading-relaxed ${
-                theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+                theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
               }`}
             >
               HireFlow is the role-based hiring platform built for humans. Candidates apply in one click, recruiters move pipelines in real time.
@@ -122,18 +125,17 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {theme === 'dark' && (
-            <div className="lg:col-span-5 relative h-[420px] hidden lg:flex items-center justify-center">
+          <div className="lg:col-span-5 relative h-[420px] hidden lg:flex items-center justify-center">
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
-                className="relative w-[340px] h-[400px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10"
+                className="relative w-[340px] h-[400px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-slate-200 bg-white dark:bg-slate-900"
               >
                 <img src={IMG.heroPerson} alt="Professional" className="h-full w-full object-cover object-top" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-                <div className="absolute bottom-5 left-4 right-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-3.5">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                <div className={`absolute inset-0 bg-gradient-to-t via-transparent to-transparent ${theme === 'dark' ? 'from-slate-900/80' : 'from-slate-50/70'}`} />
+                <div className={`absolute bottom-5 left-4 right-4 rounded-2xl ${theme === 'dark' ? 'bg-white/10 border border-white/20 text-white/70' : 'bg-white/90 border border-slate-200 text-slate-700'} backdrop-blur-md p-3.5`}>
+                  <div className={`flex items-center gap-2 text-xs font-semibold ${theme === 'dark' ? 'text-emerald-400' : 'text-slate-500'}`}>
                     <CheckCircle2 size={13} /> Shortlisted for Product Designer
                   </div>
-                  <p className="mt-1 text-xs text-white/70 font-mono">Linear · 2 min ago</p>
+                  <p className={`${theme === 'dark' ? 'text-white/70' : 'text-slate-600'} mt-1 text-xs font-mono`}>Linear · 2 min ago</p>
                 </div>
               </motion.div>
 
@@ -158,7 +160,6 @@ export default function HomePage() {
                 </div>
               </motion.div>
             </div>
-          )}
         </div>
 
       </section>
