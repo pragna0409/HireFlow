@@ -71,8 +71,8 @@ export default function RecruiterJobs() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">My Jobs</h1>
-          <p className="mt-1 text-sm text-slate-600">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">My Jobs</h1>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             {jobs.length} {jobs.length === 1 ? 'job' : 'jobs'} posted
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function RecruiterJobs() {
                       <div className="flex items-center gap-2 flex-wrap">
                         <Link
                           to={`/jobs/${job._id || job.id}`}
-                          className="text-sm font-semibold text-slate-900 hover:text-indigo-700 transition-colors"
+                          className="text-sm font-semibold text-slate-900 hover:text-indigo-700 transition-colors dark:text-white dark:hover:text-indigo-300"
                         >
                           {job.title}
                         </Link>
@@ -123,7 +123,7 @@ export default function RecruiterJobs() {
                           {st.label}
                         </Badge>
                       </div>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1.5 text-xs text-slate-500">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1.5 text-xs text-slate-500 dark:text-slate-400">
                         {job.location && (
                           <span className="flex items-center gap-1">
                             <MapPin size={11} /> {job.location}

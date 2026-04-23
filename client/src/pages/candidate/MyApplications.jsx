@@ -48,8 +48,8 @@ export default function MyApplications() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">My Applications</h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">My Applications</h1>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           Track and manage all your job applications
         </p>
       </div>
@@ -91,11 +91,11 @@ export default function MyApplications() {
                     <div className="flex-1 min-w-0">
                       <Link
                         to={`/jobs/${job._id || job.id || ''}`}
-                        className="text-sm font-semibold text-slate-900 hover:text-indigo-700 transition-colors"
+                        className="text-sm font-semibold text-slate-900 hover:text-indigo-700 transition-colors dark:text-white dark:hover:text-indigo-300"
                       >
                         {job.title || 'Job'}
                       </Link>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-slate-500">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-slate-500 dark:text-slate-400">
                         {company && (
                           <span className="flex items-center gap-1">
                             <Building2 size={11} /> {company}

@@ -138,14 +138,14 @@ export default function JobDetailPage() {
         transition={{ duration: 0.3 }}
       >
         {/* Header */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <div className="flex flex-col sm:flex-row sm:items-start gap-4">
             <Avatar name={company} size="xl" />
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-3 flex-wrap">
                 <div>
-                  <h1 className="text-2xl font-bold tracking-tight text-slate-900">{job.title}</h1>
-                  <p className="mt-1 text-sm text-slate-600">{company}</p>
+                  <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">{job.title}</h1>
+                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{company}</p>
                 </div>
                 <Badge
                   variant={job.status === 'open' ? 'emerald' : 'slate'}
@@ -176,7 +176,7 @@ export default function JobDetailPage() {
                 )}
               </div>
 
-              <div className="mt-4 flex items-center gap-4 text-xs text-slate-500">
+              <div className="mt-4 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                 <span className="flex items-center gap-1">
                   <Clock size={12} />
                   {timeAgo(job.createdAt) || 'Recently'}
@@ -230,20 +230,20 @@ export default function JobDetailPage() {
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6">
             {/* Description */}
-            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-semibold text-slate-900 mb-3">Description</h2>
-              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Description</h2>
+              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                 {job.description}
               </p>
             </div>
 
             {/* Responsibilities */}
             {responsibilities.length > 0 && (
-              <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h2 className="text-lg font-semibold text-slate-900 mb-3">Responsibilities</h2>
+              <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Responsibilities</h2>
                 <ul className="space-y-2">
                   {responsibilities.map((r, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-slate-700">
+                    <li key={i} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
                       <CheckCircle2 size={14} className="mt-0.5 text-emerald-500 shrink-0" />
                       <span>{r}</span>
                     </li>
@@ -254,13 +254,13 @@ export default function JobDetailPage() {
 
             {/* Skills */}
             {skills.length > 0 && (
-              <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h2 className="text-lg font-semibold text-slate-900 mb-3">Required Skills</h2>
+              <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Required Skills</h2>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((s) => (
                     <span
                       key={s}
-                      className="px-3 py-1 rounded-lg text-sm font-medium text-indigo-700 bg-indigo-50 border border-indigo-100"
+                      className="px-3 py-1 rounded-lg text-sm font-medium text-indigo-700 bg-indigo-50 border border-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-300 dark:border-indigo-500/20 transition-transform hover:-translate-y-0.5"
                     >
                       {s}
                     </span>
@@ -272,24 +272,24 @@ export default function JobDetailPage() {
 
           {/* Sidebar */}
           <div className="space-y-4">
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-sm font-semibold text-slate-900 mb-3">Posted by</h3>
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-3">Posted by</h3>
               <div className="flex items-center gap-3">
                 <Avatar name={recruiter.name || company} size="md" />
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">{recruiter.name || company}</p>
+                  <p className="text-sm font-semibold text-slate-900 dark:text-white">{recruiter.name || company}</p>
                   {recruiter.company && (
-                    <p className="text-xs text-slate-500 flex items-center gap-1">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
                       <Building2 size={11} /> {recruiter.company}
                     </p>
                   )}
                 </div>
               </div>
               {recruiter.bio && (
-                <p className="mt-3 text-xs text-slate-600 leading-relaxed">{recruiter.bio}</p>
+                <p className="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{recruiter.bio}</p>
               )}
               {recruiter.location && (
-                <p className="mt-2 text-xs text-slate-500 flex items-center gap-1">
+                <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
                   <MapPin size={11} /> {recruiter.location}
                 </p>
               )}

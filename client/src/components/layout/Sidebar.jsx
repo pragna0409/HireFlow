@@ -115,7 +115,7 @@ export default function Sidebar({ open, onClose }) {
         </nav>
 
         <div className="border-t border-slate-100 p-3 dark:border-slate-800/60">
-          <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+          <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-900">
             <Avatar name={user?.name} size="md" />
             <div className="flex-1 min-w-0">
               <div className="text-sm font-semibold text-slate-900 truncate dark:text-white">{user?.name}</div>

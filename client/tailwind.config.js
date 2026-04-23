@@ -5,15 +5,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          'Inter',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'Segoe UI',
-          'Roboto',
-          'sans-serif',
-        ],
+        sans: ['Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['EB Garamond', 'Georgia', 'ui-serif', 'serif'],
+        mono: ['Courier Prime', 'Courier New', 'ui-monospace', 'monospace'],
+        fantasy: ['Cinzel Decorative', 'fantasy'],
+        cursive: ['Dancing Script', 'cursive'],
       },
       colors: {
         brand: {

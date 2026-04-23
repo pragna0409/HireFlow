@@ -11,7 +11,7 @@ export default function DashboardLayout() {
   const { user } = useAuth();
 
   return (
-    <div className="min-h-screen flex bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen flex bg-slate-50 dark:bg-slate-950 dark:bg-slate-900">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col min-w-0">
         <header className="lg:hidden sticky top-0 z-30 h-14 glass border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-4">

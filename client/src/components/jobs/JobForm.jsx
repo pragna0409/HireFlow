@@ -159,7 +159,7 @@ export default function JobForm({ initial, onSubmit, submitting, onCancel }) {
         helper="Comma-separated list of required skills"
       />
 
-      <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+      <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100 dark:border-slate-800/60">
         {onCancel && (
           <Button variant="secondary" onClick={onCancel} type="button" leftIcon={<X size={14} />}>
             Cancel

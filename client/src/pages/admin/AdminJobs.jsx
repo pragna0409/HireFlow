@@ -72,8 +72,8 @@ export default function AdminJobs() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">All Jobs</h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">All Jobs</h1>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           {pagination.total} total jobs on the platform
         </p>
       </div>
@@ -117,7 +117,7 @@ export default function AdminJobs() {
                       <div className="flex items-center gap-2 flex-wrap">
                         <Link
                           to={`/jobs/${job._id || job.id}`}
-                          className="text-sm font-semibold text-slate-900 hover:text-indigo-700 transition-colors"
+                          className="text-sm font-semibold text-slate-900 hover:text-indigo-700 transition-colors dark:text-white dark:hover:text-indigo-300"
                         >
                           {job.title}
                         </Link>
@@ -125,7 +125,7 @@ export default function AdminJobs() {
                           {st.label}
                         </Badge>
                       </div>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-slate-500">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-slate-500 dark:text-slate-400">
                         {company && <span>{company}</span>}
                         {job.location && (
                           <span className="flex items-center gap-1">
@@ -166,7 +166,7 @@ export default function AdminJobs() {
               >
                 Previous
               </Button>
-              <span className="text-sm text-slate-600">
+              <span className="text-sm text-slate-600 dark:text-slate-400">
                 Page {pagination.page} of {pagination.pages}
               </span>
               <Button

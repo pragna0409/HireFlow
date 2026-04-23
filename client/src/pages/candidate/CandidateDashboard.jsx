@@ -74,10 +74,10 @@ export default function CandidateDashboard() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
           Welcome back, {user?.name?.split(' ')[0] || 'there'}! 👋
         </h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           Here's what's happening with your applications.
         </p>
       </div>
@@ -103,10 +103,10 @@ export default function CandidateDashboard() {
                   <Card hoverable className="p-5">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider dark:text-slate-400">
                           {s.label}
                         </p>
-                        <p className="mt-1 text-2xl font-bold text-slate-900">{s.value}</p>
+                        <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">{s.value}</p>
                       </div>
                       <div
                         className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${s.color} text-white shadow-md`}
@@ -123,7 +123,7 @@ export default function CandidateDashboard() {
           {/* Recent Applications */}
           <div className="mt-8">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-slate-900">Recent Applications</h2>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Recent Applications</h2>
               <Button
                 as={Link}
                 to="/candidate/applications"
@@ -138,8 +138,8 @@ export default function CandidateDashboard() {
             {recentApps.length === 0 ? (
               <Card className="p-10 text-center">
                 <Briefcase size={32} className="mx-auto mb-3 text-slate-300" />
-                <p className="text-sm font-medium text-slate-700">No applications yet</p>
-                <p className="text-xs text-slate-500 mt-1">Start browsing jobs and apply!</p>
+                <p className="text-sm font-medium text-slate-700 dark:text-slate-300">No applications yet</p>
+                <p className="text-xs text-slate-500 mt-1 dark:text-slate-400">Start browsing jobs and apply!</p>
                 <Button
                   as={Link}
                   to="/jobs"
@@ -169,10 +169,10 @@ export default function CandidateDashboard() {
                           className={`h-2.5 w-2.5 rounded-full shrink-0 ${s.dot}`}
                         />
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-slate-900 truncate">
+                          <p className="text-sm font-semibold text-slate-900 truncate dark:text-white">
                             {jobTitle}
                           </p>
-                          <p className="text-xs text-slate-500">{company}</p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">{company}</p>
                         </div>
                         <Badge
                           className={`${s.bg} ${s.text} ${s.border}`}
@@ -194,8 +194,8 @@ export default function CandidateDashboard() {
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             <Card hoverable className="p-5">
               <Briefcase size={20} className="text-indigo-600 mb-2" />
-              <h3 className="text-sm font-semibold text-slate-900">Browse Jobs</h3>
-              <p className="text-xs text-slate-500 mt-1">Discover new opportunities</p>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Browse Jobs</h3>
+              <p className="text-xs text-slate-500 mt-1 dark:text-slate-400">Discover new opportunities</p>
               <Button
                 as={Link}
                 to="/jobs"
@@ -209,8 +209,8 @@ export default function CandidateDashboard() {
             </Card>
             <Card hoverable className="p-5">
               <Bookmark size={20} className="text-emerald-600 mb-2" />
-              <h3 className="text-sm font-semibold text-slate-900">Saved Jobs</h3>
-              <p className="text-xs text-slate-500 mt-1">Review your saved listings</p>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Saved Jobs</h3>
+              <p className="text-xs text-slate-500 mt-1 dark:text-slate-400">Review your saved listings</p>
               <Button
                 as={Link}
                 to="/candidate/saved"
@@ -224,8 +224,8 @@ export default function CandidateDashboard() {
             </Card>
             <Card hoverable className="p-5">
               <FileText size={20} className="text-violet-600 mb-2" />
-              <h3 className="text-sm font-semibold text-slate-900">My Profile</h3>
-              <p className="text-xs text-slate-500 mt-1">Update skills & resume</p>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">My Profile</h3>
+              <p className="text-xs text-slate-500 mt-1 dark:text-slate-400">Update skills & resume</p>
               <Button
                 as={Link}
                 to="/candidate/profile"

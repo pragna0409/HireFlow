@@ -56,7 +56,7 @@ export default function AdminDashboard() {
 
   if (!data) {
     return (
-      <div className="text-center py-20 text-slate-500">
+      <div className="text-center py-20 text-slate-500 dark:text-slate-400">
         Failed to load analytics.
       </div>
     );
@@ -87,8 +87,8 @@ export default function AdminDashboard() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Admin Dashboard</h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Admin Dashboard</h1>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           Platform overview and analytics
         </p>
       </div>
@@ -105,10 +105,10 @@ export default function AdminDashboard() {
             <Card className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider dark:text-slate-400">
                     {s.label}
                   </p>
-                  <p className="mt-1 text-2xl font-bold text-slate-900">{s.value}</p>
+                  <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">{s.value}</p>
                 </div>
                 <div
                   className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${s.color} text-white shadow-md`}
@@ -126,7 +126,7 @@ export default function AdminDashboard() {
         {/* Jobs per month */}
         {monthData.length > 0 && (
           <Card className="p-5">
-            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-4">
+            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-4 dark:text-white">
               <BarChart3 size={16} className="text-indigo-600" />
               Jobs Posted Per Month
             </h3>
@@ -159,7 +159,7 @@ export default function AdminDashboard() {
         {/* Application status pie */}
         {statusData.length > 0 && (
           <Card className="p-5">
-            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-4">
+            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-4 dark:text-white">
               <FileText size={16} className="text-amber-600" />
               Applications by Status
             </h3>
@@ -190,7 +190,7 @@ export default function AdminDashboard() {
         {/* Users by role */}
         {roleData.length > 0 && (
           <Card className="p-5">
-            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-4">
+            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-4 dark:text-white">
               <Users size={16} className="text-emerald-600" />
               Users by Role
             </h3>

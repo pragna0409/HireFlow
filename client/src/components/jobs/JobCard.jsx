@@ -27,7 +27,7 @@ export default function JobCard({ job, saved, onToggleSave, onApply, compact }) 
           <div className="min-w-0">
             <Link
               to={`/jobs/${job._id || job.id}`}
-              className="text-base font-semibold tracking-tight text-slate-900 hover:text-indigo-700 transition-colors line-clamp-1 dark:text-white dark:hover:text-indigo-400"
+              className="text-base font-semibold tracking-tight text-slate-900 hover:text-indigo-700 transition-colors line-clamp-1 dark:text-white dark:hover:text-indigo-400 dark:hover:text-indigo-300"
             >
               {job.title}
             </Link>
@@ -86,13 +86,13 @@ export default function JobCard({ job, saved, onToggleSave, onApply, compact }) 
           {skills.slice(0, 3).map((s) => (
             <span
               key={s}
-              className="px-2 py-0.5 rounded-md text-xs font-medium text-slate-600 bg-slate-100 dark:text-slate-300 dark:bg-slate-800"
+              className="px-2 py-0.5 rounded-md text-xs font-medium text-slate-600 bg-slate-100 dark:text-slate-300 dark:bg-slate-800 dark:text-slate-400"
             >
               {s}
             </span>
           ))}
           {extraSkills > 0 && (
-            <span className="px-2 py-0.5 rounded-md text-xs font-medium text-slate-500 bg-slate-50 border border-slate-100 dark:text-slate-400 dark:bg-slate-800/50 dark:border-slate-700">
+            <span className="px-2 py-0.5 rounded-md text-xs font-medium text-slate-500 bg-slate-50 border border-slate-100 dark:text-slate-400 dark:bg-slate-800/50 dark:border-slate-700 dark:border-slate-800/60 dark:bg-slate-900">
               +{extraSkills} more
             </span>
           )}

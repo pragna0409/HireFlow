@@ -75,12 +75,12 @@ export default function JobApplicants() {
       </Button>
 
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
           Applicants
         </h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           {applicants.length} applicant{applicants.length !== 1 ? 's' : ''} for{' '}
-          <span className="font-medium text-slate-900">{jobTitle}</span>
+          <span className="font-medium text-slate-900 dark:text-white">{jobTitle}</span>
         </p>
       </div>
 
@@ -115,10 +115,10 @@ export default function JobApplicants() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-3 flex-wrap">
                         <div>
-                          <h3 className="text-sm font-semibold text-slate-900">
+                          <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
                             {candidate.name || 'Candidate'}
                           </h3>
-                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-slate-500">
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-slate-500 dark:text-slate-400">
                             {candidate.email && (
                               <a
                                 href={`mailto:${candidate.email}`}
@@ -149,7 +149,7 @@ export default function JobApplicants() {
                       </div>
 
                       {candidate.bio && (
-                        <p className="mt-2 text-xs text-slate-600 line-clamp-2">{candidate.bio}</p>
+                        <p className="mt-2 text-xs text-slate-600 line-clamp-2 dark:text-slate-400">{candidate.bio}</p>
                       )}
 
                       {skills.length > 0 && (
@@ -157,7 +157,7 @@ export default function JobApplicants() {
                           {skills.slice(0, 6).map((sk) => (
                             <span
                               key={sk}
-                              className="px-2 py-0.5 rounded-md text-[10px] font-medium text-slate-600 bg-slate-100"
+                              className="px-2 py-0.5 rounded-md text-[10px] font-medium text-slate-600 bg-slate-100 dark:text-slate-400 dark:bg-slate-800"
                             >
                               {sk}
                             </span>
@@ -172,14 +172,14 @@ export default function JobApplicants() {
 
                       {app.coverLetter && (
                         <details className="mt-3 group">
-                          <summary className="text-xs font-medium text-indigo-600 cursor-pointer inline-flex items-center gap-1 hover:text-indigo-700">
+                          <summary className="text-xs font-medium text-indigo-600 cursor-pointer inline-flex items-center gap-1 hover:text-indigo-700 dark:hover:text-indigo-300">
                             <FileText size={12} /> Cover Letter
                             <ChevronDown
                               size={12}
                               className="transition-transform group-open:rotate-180"
                             />
                           </summary>
-                          <p className="mt-2 text-xs text-slate-600 leading-relaxed bg-slate-50 rounded-lg p-3">
+                          <p className="mt-2 text-xs text-slate-600 leading-relaxed bg-slate-50 rounded-lg p-3 dark:text-slate-400 dark:bg-slate-900">
                             {app.coverLetter}
                           </p>
                         </details>

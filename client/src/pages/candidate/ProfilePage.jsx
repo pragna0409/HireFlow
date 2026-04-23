@@ -51,8 +51,8 @@ export default function ProfilePage() {
   return (
     <div className="max-w-2xl">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">My Profile</h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">My Profile</h1>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           Update your personal information and skills
         </p>
       </div>
@@ -63,7 +63,7 @@ export default function ProfilePage() {
             <Avatar name={user?.name} size="xl" />
             <div>
               <CardTitle className="text-lg">{user?.name}</CardTitle>
-              <p className="text-sm text-slate-500">{user?.email}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{user?.email}</p>
               <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-semibold uppercase tracking-wider text-indigo-600">
                 <Briefcase size={10} /> {user?.role}
               </span>
@@ -116,7 +116,7 @@ export default function ProfilePage() {
               onChange={set('experience')}
               min="0"
             />
-            <div className="flex justify-end pt-2 border-t border-slate-100">
+            <div className="flex justify-end pt-2 border-t border-slate-100 dark:border-slate-800/60">
               <Button type="submit" loading={saving} leftIcon={<Save size={14} />}>
                 Save Changes
               </Button>

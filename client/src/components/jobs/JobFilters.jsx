@@ -66,13 +66,13 @@ export default function JobFilters({ filters, setFilters, onReset }) {
                 return (
                   <label
                     key={t.value}
-                    className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-sm text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/50"
+                    className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-sm text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:bg-slate-800/60"
                   >
                     <input
                       type="checkbox"
                       checked={checked}
                       onChange={() => toggleJobType(t.value)}
-                      className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:border-slate-700"
                     />
                     <span>{t.label}</span>
                   </label>
@@ -86,27 +86,27 @@ export default function JobFilters({ filters, setFilters, onReset }) {
               Experience Level
             </label>
             <div className="mt-2 space-y-1.5">
-              <label className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-sm text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/50">
+              <label className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-sm text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:bg-slate-800/60">
                 <input
                   type="radio"
                   name="exp"
                   checked={!filters.experienceLevel}
                   onChange={() => setFilters((f) => ({ ...f, experienceLevel: '' }))}
-                  className="h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:border-slate-700"
                 />
                 <span>Any</span>
               </label>
               {EXPERIENCE_LEVELS.map((e) => (
                 <label
                   key={e.value}
-                  className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-sm text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/50"
+                  className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-sm text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:bg-slate-800/60"
                 >
                   <input
                     type="radio"
                     name="exp"
                     checked={filters.experienceLevel === e.value}
                     onChange={() => setFilters((f) => ({ ...f, experienceLevel: e.value }))}
-                    className="h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                    className="h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:border-slate-700"
                   />
                   <span>{e.label}</span>
                 </label>

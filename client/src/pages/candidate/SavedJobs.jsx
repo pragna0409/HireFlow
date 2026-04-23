@@ -36,8 +36,8 @@ export default function SavedJobs() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Saved Jobs</h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Saved Jobs</h1>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           Jobs you've bookmarked for later
         </p>
       </div>

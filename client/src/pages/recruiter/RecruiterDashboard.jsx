@@ -51,10 +51,10 @@ export default function RecruiterDashboard() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
             Welcome, {user?.name?.split(' ')[0] || 'Recruiter'}! 🚀
           </h1>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             Manage your job postings and applicants.
           </p>
         </div>
@@ -82,10 +82,10 @@ export default function RecruiterDashboard() {
                 <Card className="p-5">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                      <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider dark:text-slate-400">
                         {s.label}
                       </p>
-                      <p className="mt-1 text-2xl font-bold text-slate-900">{s.value}</p>
+                      <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">{s.value}</p>
                     </div>
                     <div
                       className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${s.color} text-white shadow-md`}
@@ -100,7 +100,7 @@ export default function RecruiterDashboard() {
 
           <div className="mt-8">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-slate-900">Recent Jobs</h2>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Recent Jobs</h2>
               <Button
                 as={Link}
                 to="/recruiter/jobs"
@@ -115,7 +115,7 @@ export default function RecruiterDashboard() {
             {recentJobs.length === 0 ? (
               <Card className="p-10 text-center">
                 <Briefcase size={32} className="mx-auto mb-3 text-slate-300" />
-                <p className="text-sm font-medium text-slate-700">No jobs posted yet</p>
+                <p className="text-sm font-medium text-slate-700 dark:text-slate-300">No jobs posted yet</p>
                 <Button
                   as={Link}
                   to="/recruiter/jobs/new"
@@ -140,11 +140,11 @@ export default function RecruiterDashboard() {
                         <div className="flex-1 min-w-0">
                           <Link
                             to={`/recruiter/jobs/${job._id || job.id}/applicants`}
-                            className="text-sm font-semibold text-slate-900 hover:text-indigo-700 transition-colors"
+                            className="text-sm font-semibold text-slate-900 hover:text-indigo-700 transition-colors dark:text-white dark:hover:text-indigo-300"
                           >
                             {job.title}
                           </Link>
-                          <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                          <div className="flex items-center gap-3 mt-1 text-xs text-slate-500 dark:text-slate-400">
                             <span className="flex items-center gap-1">
                               <Users size={11} /> {job.applicationsCount || 0} applicants
                             </span>

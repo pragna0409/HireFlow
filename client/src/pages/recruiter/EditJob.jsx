@@ -85,7 +85,7 @@ export default function EditJob() {
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Edit Job</CardTitle>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             Update the job details below.
           </p>
         </CardHeader>

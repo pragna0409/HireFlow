@@ -85,8 +85,8 @@ export default function AdminUsers() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Manage Users</h1>
-        <p className="mt-1 text-sm text-slate-600">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Manage Users</h1>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           {pagination.total} total users
         </p>
       </div>
@@ -105,8 +105,8 @@ export default function AdminUsers() {
               onClick={() => setRoleFilter(r)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                 roleFilter === r
-                  ? 'bg-indigo-50 text-indigo-700 border border-indigo-200'
-                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                  ? 'bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-500/10 dark:text-indigo-300 dark:border-indigo-500/30'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-300 dark:border-slate-800 dark:hover:bg-slate-800'
               }`}
             >
               {r ? r.charAt(0).toUpperCase() + r.slice(1) : 'All'}
@@ -141,7 +141,7 @@ export default function AdminUsers() {
                   <Avatar name={u.name} size="md" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-sm font-semibold text-slate-900">{u.name}</span>
+                      <span className="text-sm font-semibold text-slate-900 dark:text-white">{u.name}</span>
                       <Badge variant={ROLE_BADGE[u.role] || 'slate'}>
                         {u.role}
                       </Badge>
@@ -150,7 +150,7 @@ export default function AdminUsers() {
                         <Badge variant="amber">Pending</Badge>
                       )}
                     </div>
-                    <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                    <div className="flex items-center gap-3 mt-1 text-xs text-slate-500 dark:text-slate-400">
                       <span>{u.email}</span>
                       <span>Joined {timeAgo(u.createdAt)}</span>
                     </div>
@@ -193,7 +193,7 @@ export default function AdminUsers() {
               >
                 Previous
               </Button>
-              <span className="text-sm text-slate-600">
+              <span className="text-sm text-slate-600 dark:text-slate-400">
                 Page {pagination.page} of {pagination.pages}
               </span>
               <Button

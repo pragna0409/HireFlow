@@ -129,7 +129,7 @@ export default function Navbar() {
                 {l.label}
               </NavLink>
             ))}
-            <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2 dark:border-slate-800/60">
               {isAuthenticated ? (
                 <>
                   <div className="flex items-center gap-3 px-3 py-2">

@@ -4,7 +4,7 @@ import Spinner from './Spinner';
 
 const variants = {
   primary:
-    'bg-gradient-to-r from-indigo-600 to-violet-500 text-white hover:from-indigo-700 hover:to-violet-600 shadow-sm hover:shadow-md focus-visible:ring-indigo-500',
+    'bg-gradient-to-r from-indigo-600 via-violet-500 to-indigo-600 text-white shadow-sm hover:shadow-glow btn-shine focus-visible:ring-indigo-500',
   secondary:
     'bg-white text-slate-900 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700 dark:hover:border-slate-600 dark:hover:bg-slate-700 shadow-sm focus-visible:ring-indigo-500',
   ghost:
@@ -46,7 +46,7 @@ const Button = forwardRef(function Button(
       ref={ref}
       disabled={Tag === 'button' ? isDisabled : undefined}
       className={cn(
-        'inline-flex items-center rounded-lg font-medium transition-all duration-200 select-none',
+        'inline-flex items-center rounded-lg font-medium transition-all duration-200 select-none active:scale-[0.98]',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
         'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
         variants[variant],

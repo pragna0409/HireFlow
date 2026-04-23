@@ -60,7 +60,7 @@ export default function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors dark:border-slate-700 dark:hover:bg-slate-800 dark:hover:text-white"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors dark:border-slate-700 dark:hover:bg-slate-800 dark:hover:text-white dark:text-slate-400 dark:border-slate-800 dark:hover:bg-slate-800/60"
                   aria-label="social"
                 >
                   <Icon size={16} />

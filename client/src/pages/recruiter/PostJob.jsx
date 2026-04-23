@@ -52,7 +52,7 @@ export default function PostJob() {
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Post a New Job</CardTitle>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             Fill in the details below to create a new job posting.
           </p>
         </CardHeader>
