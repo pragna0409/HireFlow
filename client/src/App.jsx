@@ -24,11 +24,15 @@ import RecruiterJobs from './pages/recruiter/RecruiterJobs';
 import PostJob from './pages/recruiter/PostJob';
 import EditJob from './pages/recruiter/EditJob';
 import JobApplicants from './pages/recruiter/JobApplicants';
+import ATSChecker from './pages/recruiter/ATSChecker';
 
 // Admin pages
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminJobs from './pages/admin/AdminJobs';
+
+// Messages
+import MessagesPage from './pages/messages/MessagesPage';
 
 // Other
 import NotFoundPage from './pages/NotFoundPage';
@@ -87,6 +91,7 @@ export default function App() {
         <Route path="/recruiter/jobs/new" element={<PostJob />} />
         <Route path="/recruiter/jobs/:id/edit" element={<EditJob />} />
         <Route path="/recruiter/jobs/:id/applicants" element={<JobApplicants />} />
+        <Route path="/recruiter/jobs/:id/ats" element={<ATSChecker />} />
       </Route>
 
       {/* Admin dashboard */}
@@ -100,6 +105,18 @@ export default function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/jobs" element={<AdminJobs />} />
+      </Route>
+
+      {/* Messages — all authenticated roles */}
+      <Route
+        element={
+          <ProtectedRoute allowedRoles={[ROLES.CANDIDATE, ROLES.RECRUITER, ROLES.ADMIN]}>
+            <DashboardLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/messages/:userId" element={<MessagesPage />} />
       </Route>
     </Routes>
   );

@@ -12,6 +12,7 @@ import jobRoutes from "./routes/job.routes.js";
 import applicationRoutes from "./routes/application.routes.js";
 import notificationRoutes from "./routes/notification.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
+import messageRoutes from "./routes/message.routes.js";
 
 import { notFound, errorHandler } from "./middleware/error.middleware.js";
 
@@ -58,6 +59,7 @@ app.use("/api/v1/jobs", jobRoutes);
 app.use("/api/v1/applications", applicationRoutes);
 app.use("/api/v1/notifications", notificationRoutes);
 app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/messages", messageRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

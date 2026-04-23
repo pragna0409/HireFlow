@@ -10,6 +10,8 @@ import {
   Briefcase,
   ExternalLink,
   ChevronDown,
+  BarChart3,
+  MessageSquare,
 } from 'lucide-react';
 import { applicationApi } from '../../api/application.api';
 import Card from '../../components/ui/Card';
@@ -74,14 +76,27 @@ export default function JobApplicants() {
         Back to My Jobs
       </Button>
 
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Applicants
-        </h1>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-          {applicants.length} applicant{applicants.length !== 1 ? 's' : ''} for{' '}
-          <span className="font-medium text-slate-900 dark:text-white">{jobTitle}</span>
-        </p>
+      <div className="mb-6 flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Applicants
+          </h1>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            {applicants.length} applicant{applicants.length !== 1 ? 's' : ''} for{' '}
+            <span className="font-medium text-slate-900 dark:text-white">{jobTitle}</span>
+          </p>
+        </div>
+        {applicants.length > 0 && (
+          <Button
+            as={Link}
+            to={`/recruiter/jobs/${id}/ats`}
+            variant="subtle"
+            size="sm"
+            leftIcon={<BarChart3 size={14} />}
+          >
+            ATS Checker
+          </Button>
+        )}
       </div>
 
       {loading ? (
@@ -209,6 +224,15 @@ export default function JobApplicants() {
                             Resume
                           </Button>
                         )}
+                        <Button
+                          as={Link}
+                          to={`/messages/${candidate._id}`}
+                          variant="ghost"
+                          size="sm"
+                          leftIcon={<MessageSquare size={12} />}
+                        >
+                          Message
+                        </Button>
                       </div>
                     </div>
                   </div>
