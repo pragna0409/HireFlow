@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import {
   Briefcase, ArrowRight, ArrowUpRight, Users, TrendingUp,
   CheckCircle2, Sparkles, Building2, Bell, Bookmark,
@@ -28,6 +29,7 @@ const gooeyNavItems = [
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const { theme } = useTheme();
   const [adminModalOpen, setAdminModalOpen] = useState(false);
 
   return (
@@ -37,6 +39,12 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-grid-slate bg-[length:32px_32px] opacity-60 dark:opacity-20" />
         <div className="absolute -top-20 -left-10 h-72 w-72 rounded-full bg-indigo-200/50 dark:bg-indigo-500/10 blur-[110px]" />
         <div className="absolute top-40 right-1/4 h-80 w-80 rounded-full bg-violet-200/40 dark:bg-violet-500/10 blur-[120px]" />
+        {theme === 'dark' && (
+          <div className="absolute inset-0 hidden dark:block">
+            <img src={IMG.hero} alt="Hero background" className="h-full w-full object-cover opacity-60" />
+            <div className="absolute inset-0 bg-slate-950/70" />
+          </div>
+        )}
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center">
           {/* Left — content */}
@@ -117,91 +125,24 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* Right — stacked floating cards mock */}
-          <div className="lg:col-span-5 relative h-[420px] hidden lg:block">
-            {/* Card 1: Job post */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: -4 }}
-              animate={{ opacity: 1, y: 0, rotate: -4 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="absolute top-4 left-0 w-[280px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card animate-float"
-              style={{ animationDelay: '0s' }}
-            >
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white font-bold text-sm">
-                  S
+          {/* Right — dark-mode hero visual */}
+          <div className="lg:col-span-5 relative hidden lg:flex items-center justify-end">
+            <div className="relative w-full max-w-[420px] overflow-hidden rounded-[40px] border border-slate-900/30 bg-slate-950 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.75)]">
+              <img src={IMG.hero} alt="Hiring dashboard" className="h-full w-full object-cover brightness-90" />
+              <div className="absolute inset-0 bg-slate-950/50" />
+              <div className="absolute top-6 right-6 rounded-3xl border border-white/10 bg-slate-900/90 backdrop-blur-xl p-4 text-right shadow-lg">
+                <p className="text-[11px] uppercase tracking-[0.32em] text-slate-400">This week</p>
+                <div className="mt-3 text-4xl font-semibold text-white leading-none">143</div>
+                <p className="text-sm text-slate-400 mt-1">applications</p>
+              </div>
+              <div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-white/10 bg-slate-900/85 backdrop-blur-xl p-4 shadow-lg">
+                <div className="flex items-center gap-2 text-sm font-semibold text-emerald-400">
+                  <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                  Shortlisted for Product Designer
                 </div>
-                <div className="min-w-0">
-                  <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">Senior Frontend Engineer</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 truncate">Stripe · Remote</div>
-                </div>
+                <div className="mt-2 text-sm text-slate-300">Linear · 2 min ago</div>
               </div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {['React', 'TypeScript', '+3'].map((t) => (
-                  <span key={t} className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-4 flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-900 dark:text-white">$140k – $180k</span>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400">2h ago</span>
-              </div>
-            </motion.div>
-
-            {/* Card 2: Status update */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: 3 }}
-              animate={{ opacity: 1, y: 0, rotate: 3 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="absolute top-36 right-0 w-[260px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card"
-            >
-              <div className="flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                <CheckCircle2 size={14} />
-                Shortlisted
-              </div>
-              <div className="mt-2 text-sm text-slate-900 dark:text-white">
-                You've been shortlisted for <span className="font-semibold">Product Designer</span>
-              </div>
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-xs text-slate-500 dark:text-slate-400">Linear · 2 min ago</span>
-                <button className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
-                  View →
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Card 3: Analytics glimpse */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: 1 }}
-              animate={{ opacity: 1, y: 0, rotate: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute bottom-4 left-10 w-[300px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-card animate-float"
-              style={{ animationDelay: '1.5s' }}
-            >
-              <div className="flex items-center justify-between mb-3">
-                <div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Applications this week</div>
-                  <div className="text-2xl font-extrabold text-slate-900 dark:text-white">143</div>
-                </div>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                  <TrendingUp size={12} /> +24%
-                </span>
-              </div>
-              <div className="h-14">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={sparkData}>
-                    <defs>
-                      <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#6366F1" stopOpacity={0.5} />
-                        <stop offset="100%" stopColor="#6366F1" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <Area type="monotone" dataKey="v" stroke="#6366F1" strokeWidth={2} fill="url(#spark)" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
