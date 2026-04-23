@@ -30,11 +30,11 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-slate-950 pt-20 pb-0 sm:pt-28">
-        {/* Full-bleed background image */}
+      <section className="relative overflow-hidden pt-20 pb-0 sm:pt-28">
+        {/* Full-bleed background image — bleeds into stats strip */}
         <div className="absolute inset-0">
-          <img src={IMG.hero} alt="" className="h-full w-full object-cover object-center opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/50 to-slate-950" />
+          <img src={IMG.hero} alt="" className="h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/70 to-white dark:to-slate-950" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center pb-24 sm:pb-32">
@@ -130,11 +130,11 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Stats strip */}
+        {/* Stats strip — sits flush, blends into next section */}
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pb-0">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-t-2xl border border-b-0 border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm p-3 sm:p-4 shadow-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 rounded-t-2xl border border-b-0 border-white/20 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm">
             {stats.map((s, i) => (
-              <div key={s.label} className={`px-4 py-3 ${i !== 0 ? 'md:border-l border-slate-200 dark:border-slate-800' : ''}`}>
+              <div key={s.label} className={`px-6 py-5 ${i !== 0 ? 'border-l border-white/30 dark:border-slate-800' : ''}`}>
                 <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   <s.icon size={14} />{s.label}
                 </div>
@@ -254,11 +254,11 @@ export default function HomePage() {
             <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Pick your side of the table.</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            <RoleCard tone="light" icon={<Users size={20} />} title="Candidates" desc="Find roles that actually match. Apply once, track everything."
+            <RoleCard tone="photo" img={IMG.office} icon={<Users size={20} />} title="Candidates" desc="Find roles that actually match. Apply once, track everything."
               bullets={['One-click apply with saved resume', 'Real-time status updates', 'Save jobs for later']} cta="Sign up free" onClick={() => navigate('/register')} />
-            <RoleCard tone="photo" icon={<Briefcase size={20} />} title="Recruiters" desc="Post jobs, review applicants, move pipelines — in one view."
+            <RoleCard tone="photo" img={IMG.heroPerson} icon={<Briefcase size={20} />} title="Recruiters" desc="Post jobs, review applicants, move pipelines — in one view."
               bullets={['Create and manage job posts', 'Shortlist with one click', 'Filter by skills and experience']} cta="Post a job" onClick={() => navigate('/register')} />
-            <RoleCard tone="pattern" icon={<UserCog size={20} />} title="Admins" desc="Approve recruiters, audit activity, and watch the pulse of every hire."
+            <RoleCard tone="photo" img={IMG.abstract} icon={<UserCog size={20} />} title="Admins" desc="Approve recruiters, audit activity, and watch the pulse of every hire."
               bullets={['Approve or ban users', 'Platform-wide analytics', 'Moderate job postings']} cta="Learn more" onClick={() => navigate('/jobs')} />
           </div>
         </div>
@@ -315,45 +315,38 @@ function BentoCard({ icon, title, desc, accent = 'indigo' }) {
   );
 }
 
-function RoleCard({ tone, icon, title, desc, bullets, cta, onClick }) {
+function RoleCard({ tone, img, icon, title, desc, bullets, cta, onClick }) {
   const isPhoto = tone === 'photo';
   const isDark = tone === 'dark';
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-      className={`group relative rounded-2xl border overflow-hidden p-7 hover:-translate-y-1 transition-all duration-300 ${
-        isPhoto ? 'border-0 text-white min-h-[320px]' :
-        isDark ? 'bg-slate-900 dark:bg-slate-950 border-slate-900 text-white' :
-        'bg-gradient-to-br from-indigo-50 via-white to-violet-50 dark:from-indigo-950/40 dark:via-slate-900 dark:to-violet-950/40 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white'
-      }`}
+      className="group relative rounded-2xl border-0 overflow-hidden p-7 hover:-translate-y-1 transition-all duration-300 text-white min-h-[320px]"
     >
-      {isPhoto && (
-        <>
-          <img src={IMG.heroPerson} alt="" className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-slate-900/30" />
-        </>
-      )}
-      {tone === 'pattern' && (
-        <div className="absolute inset-0 bg-grid-slate bg-[length:24px_24px] opacity-60 dark:opacity-20 pointer-events-none" />
-      )}
+      {/* Photo bg — always */}
+      <img
+        src={img || IMG.heroPerson}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-slate-900/25" />
+
       <div className="relative">
-        <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${
-          isPhoto || isDark ? 'bg-white/15 backdrop-blur-sm text-white border border-white/20' : 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400'
-        }`}>{icon}</div>
-        <h3 className={`mt-5 font-serif text-xl font-bold tracking-tight ${isPhoto || isDark ? 'text-white' : 'text-slate-900 dark:text-white'}`}>{title}</h3>
-        <p className={`mt-2 text-sm leading-relaxed ${isPhoto || isDark ? 'text-white/70' : 'text-slate-600 dark:text-slate-400'}`}>{desc}</p>
+        <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 backdrop-blur-sm text-white border border-white/20">
+          {icon}
+        </div>
+        <h3 className="mt-5 font-serif text-xl font-bold tracking-tight text-white">{title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-white/70">{desc}</p>
         <ul className="mt-5 space-y-2">
           {bullets.map((b) => (
-            <li key={b} className={`flex items-start gap-2 text-sm ${isPhoto || isDark ? 'text-white/80' : 'text-slate-700 dark:text-slate-300'}`}>
-              <CheckCircle2 size={16} className={isPhoto || isDark ? 'text-indigo-300' : 'text-indigo-500'} />
+            <li key={b} className="flex items-start gap-2 text-sm text-white/80">
+              <CheckCircle2 size={16} className="text-indigo-300 shrink-0 mt-0.5" />
               <span>{b}</span>
             </li>
           ))}
         </ul>
         <button type="button" onClick={onClick}
-          className={`mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors ${
-            isPhoto || isDark ? 'text-white hover:text-indigo-300' : 'text-indigo-600 dark:text-indigo-400 hover:text-indigo-700'
-          }`}
+          className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-indigo-300 transition-colors"
         >
           {cta} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
         </button>
