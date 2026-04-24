@@ -28,10 +28,10 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200/60 dark:border-slate-800/60 glass">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200/60 dark:border-zinc-800/60 glass">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2 group">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-violet-500 text-white shadow-glow group-hover:scale-105 transition-transform">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-800 text-white shadow-md group-hover:scale-105 transition-transform">
             <Briefcase size={18} strokeWidth={2.5} />
           </span>
           <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">HireFlow</span>
@@ -47,8 +47,8 @@ export default function Navbar() {
                 cn(
                   'px-3 py-2 text-sm font-medium rounded-lg transition-colors',
                   isActive
-                    ? 'text-indigo-700 bg-indigo-50 dark:text-indigo-300 dark:bg-indigo-500/10'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800',
+                    ? 'text-white bg-zinc-800 dark:text-white dark:bg-zinc-800'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-zinc-800',
                 )
               }
             >
@@ -64,7 +64,7 @@ export default function Navbar() {
               <NotificationDropdown />
               <Link
                 to={dashPath}
-                className="flex items-center gap-2 rounded-lg pl-1 pr-2.5 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-2 rounded-lg pl-1 pr-2.5 py-1 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 <Avatar name={user?.name} src={user?.avatarUrl} size="sm" />
                 <div className="hidden lg:flex flex-col leading-tight">
@@ -101,7 +101,7 @@ export default function Navbar() {
           <ThemeToggle />
           <button
             onClick={() => setMobileOpen((o) => !o)}
-            className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+            className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-zinc-800"
             aria-label="Menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -110,7 +110,7 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+        <div className="md:hidden border-t border-slate-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
           <div className="px-4 py-3 space-y-1">
             {links.map((l) => (
               <NavLink
@@ -122,8 +122,8 @@ export default function Navbar() {
                   cn(
                     'block px-3 py-2 rounded-lg text-sm font-medium',
                     isActive
-                      ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300'
-                      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
+                      ? 'bg-zinc-800 text-white dark:bg-zinc-800 dark:text-white'
+                      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-zinc-800',
                   )
                 }
               >

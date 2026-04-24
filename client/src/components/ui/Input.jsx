@@ -38,7 +38,7 @@ const Input = forwardRef(function Input(
           className={cn(
             'w-full h-10 rounded-lg border bg-white px-3 text-sm text-slate-900 placeholder:text-slate-400 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500',
             'transition-all duration-200',
-            'focus:outline-none focus:ring-4 focus:ring-indigo-500/15 focus:border-indigo-500 dark:focus:ring-indigo-500/20',
+            'focus:outline-none focus:ring-4 focus:ring-zinc-500/10 focus:border-zinc-600 dark:focus:ring-zinc-500/15 dark:focus:border-zinc-500 dark:bg-zinc-900 dark:border-zinc-700',
             'disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed dark:disabled:bg-slate-800 dark:disabled:text-slate-400',
             leftIcon && 'pl-9',
             rightIcon && 'pr-9',

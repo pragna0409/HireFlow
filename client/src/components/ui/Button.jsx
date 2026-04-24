@@ -4,17 +4,17 @@ import Spinner from './Spinner';
 
 const variants = {
   primary:
-    'bg-gradient-to-r from-indigo-600 via-violet-500 to-indigo-600 text-white shadow-sm hover:shadow-glow btn-shine focus-visible:ring-indigo-500',
+    'bg-gradient-to-r from-zinc-800 via-zinc-700 to-zinc-800 text-white shadow-sm hover:shadow-md btn-shine focus-visible:ring-zinc-500',
   secondary:
-    'bg-white text-slate-900 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700 dark:hover:border-slate-600 dark:hover:bg-slate-700 shadow-sm focus-visible:ring-indigo-500',
+    'bg-white text-slate-900 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 dark:bg-zinc-900 dark:text-slate-100 dark:border-zinc-700 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 shadow-sm focus-visible:ring-zinc-500',
   ghost:
-    'bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white focus-visible:ring-indigo-500',
+    'bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-zinc-800 dark:hover:text-white focus-visible:ring-zinc-500',
   danger:
     'bg-rose-500 text-white hover:bg-rose-600 shadow-sm focus-visible:ring-rose-500',
   outline:
-    'bg-transparent text-indigo-600 border border-indigo-200 hover:bg-indigo-50 dark:border-indigo-500/30 dark:hover:bg-indigo-500/10 focus-visible:ring-indigo-500',
+    'bg-transparent text-zinc-700 border border-zinc-300 hover:bg-zinc-50 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800 focus-visible:ring-zinc-500',
   subtle:
-    'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-300 dark:hover:bg-indigo-500/20 focus-visible:ring-indigo-500',
+    'bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 focus-visible:ring-zinc-500',
 };
 
 const sizes = {

@@ -19,7 +19,7 @@ export default function JobCard({ job, saved, onToggleSave, onApply, onMessage, 
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25 }}
-      className="group relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-500/50"
+      className="group relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-slate-300 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3 min-w-0">
@@ -27,7 +27,7 @@ export default function JobCard({ job, saved, onToggleSave, onApply, onMessage, 
           <div className="min-w-0">
             <Link
               to={`/jobs/${job._id || job.id}`}
-              className="text-base font-semibold tracking-tight text-slate-900 hover:text-indigo-700 transition-colors line-clamp-1 dark:text-white dark:hover:text-indigo-400"
+              className="text-base font-semibold tracking-tight text-slate-900 hover:text-zinc-600 transition-colors line-clamp-1 dark:text-white dark:hover:text-zinc-300"
             >
               {job.title}
             </Link>
@@ -49,8 +49,8 @@ export default function JobCard({ job, saved, onToggleSave, onApply, onMessage, 
             className={cn(
               'rounded-lg p-1.5 transition-colors',
               saved
-                ? 'text-indigo-600 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-500/10 dark:hover:bg-indigo-500/20'
-                : 'text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 dark:text-slate-500 dark:hover:text-indigo-400 dark:hover:bg-indigo-500/10',
+                ? 'text-zinc-700 bg-zinc-100 hover:bg-zinc-200 dark:text-white dark:bg-zinc-700 dark:hover:bg-zinc-600'
+                : 'text-slate-400 hover:text-zinc-700 hover:bg-zinc-100 dark:text-slate-500 dark:hover:text-white dark:hover:bg-zinc-800',
             )}
             aria-label={saved ? 'Unsave' : 'Save'}
           >
@@ -66,7 +66,7 @@ export default function JobCard({ job, saved, onToggleSave, onApply, onMessage, 
           </Badge>
         )}
         {job.jobType && (
-          <Badge variant="indigo" leftIcon={<Briefcase size={11} />}>
+          <Badge variant="slate" leftIcon={<Briefcase size={11} />}>
             {job.jobType}
           </Badge>
         )}
@@ -76,7 +76,7 @@ export default function JobCard({ job, saved, onToggleSave, onApply, onMessage, 
           </Badge>
         )}
         {job.experienceLevel && (
-          <Badge variant="violet">{job.experienceLevel}</Badge>
+          <Badge variant="slate">{job.experienceLevel}</Badge>
         )}
       </div>
 
@@ -91,13 +91,13 @@ export default function JobCard({ job, saved, onToggleSave, onApply, onMessage, 
           {skills.slice(0, 3).map((s) => (
             <span
               key={s}
-              className="px-2 py-0.5 rounded-md text-xs font-medium text-slate-600 bg-slate-100 dark:text-slate-400 dark:bg-slate-800"
+              className="px-2 py-0.5 rounded-md text-xs font-medium text-slate-600 bg-slate-100 dark:text-slate-400 dark:bg-zinc-800"
             >
               {s}
             </span>
           ))}
           {extraSkills > 0 && (
-            <span className="px-2 py-0.5 rounded-md text-xs font-medium text-slate-500 bg-slate-50 border border-slate-100 dark:text-slate-400 dark:bg-slate-800/50 dark:border-slate-700 dark:border-slate-800/60 dark:bg-slate-900">
+            <span className="px-2 py-0.5 rounded-md text-xs font-medium text-slate-500 bg-slate-50 border border-slate-100 dark:text-slate-400 dark:bg-zinc-800 dark:border-zinc-700">
               +{extraSkills} more
             </span>
           )}

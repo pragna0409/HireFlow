@@ -14,7 +14,7 @@ export default function Avatar({ name = '', src, size = 'md', className, gradien
     <span
       className={cn(
         'inline-flex shrink-0 items-center justify-center rounded-full overflow-hidden font-semibold text-white',
-        gradient ? 'bg-gradient-to-br from-indigo-500 to-violet-500' : 'bg-slate-200 text-slate-700',
+        gradient ? 'bg-gradient-to-br from-zinc-600 to-zinc-900' : 'bg-slate-200 text-slate-700',
         sizes[size],
         className,
       )}

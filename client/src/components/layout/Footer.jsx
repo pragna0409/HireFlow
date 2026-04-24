@@ -42,12 +42,12 @@ const cols = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+    <footer className="border-t border-slate-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
           <div className="col-span-2">
             <Link to="/" className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-violet-500 text-white shadow-glow">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-800 text-white shadow-md">
                 <Briefcase size={18} strokeWidth={2.5} />
               </span>
               <span className="text-lg font-bold tracking-tight">HireFlow</span>
