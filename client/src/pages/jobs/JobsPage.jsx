@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Briefcase } from 'lucide-react';
+import { Briefcase, Search } from 'lucide-react';
 import { jobApi } from '../../api/job.api';
 import useAuth from '../../hooks/useAuth';
 import useDebounce from '../../hooks/useDebounce';
@@ -9,6 +9,9 @@ import JobFilters from '../../components/jobs/JobFilters';
 import { SkeletonCard } from '../../components/ui/Skeleton';
 import EmptyState from '../../components/ui/EmptyState';
 import Button from '../../components/ui/Button';
+import Input from '../../components/ui/Input';
+import Select from '../../components/ui/Select';
+import { JOB_TYPES, EXPERIENCE_LEVELS } from '../../utils/constants';
 import toast from 'react-hot-toast';
 
 const defaultFilters = {
@@ -97,20 +100,56 @@ export default function JobsPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Browse Jobs</h1>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-          {pagination.total} {pagination.total === 1 ? 'job' : 'jobs'} available
-        </p>
+      <div className="mb-8 rounded-3xl bg-slate-900 p-8 sm:p-12 relative overflow-hidden dark:bg-slate-950">
+        <div className="absolute inset-0 bg-grid-slate bg-[length:32px_32px] opacity-20" />
+        <div className="relative z-10 max-w-2xl">
+          <h1 className="text-3xl sm:text-4xl font-serif font-extrabold text-white tracking-tight mb-4">
+            Discover high-quality roles built around real hiring needs.
+          </h1>
+          <p className="text-slate-300 text-lg leading-relaxed mb-8">
+            Explore curated openings, compare locations and work modes, and submit a complete application that recruiters can actually review.
+          </p>
+          <div className="flex flex-wrap gap-6 sm:gap-10">
+            <div>
+              <div className="text-3xl font-extrabold text-white">{pagination.total || 5}</div>
+              <div className="text-sm font-medium text-slate-400 uppercase tracking-wider mt-1">Open roles</div>
+            </div>
+            <div>
+              <div className="text-3xl font-extrabold text-white">10</div>
+              <div className="text-sm font-medium text-slate-400 uppercase tracking-wider mt-1">Cities</div>
+            </div>
+            <div>
+              <div className="text-3xl font-extrabold text-white">3</div>
+              <div className="text-sm font-medium text-slate-400 uppercase tracking-wider mt-1">Work modes</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        <JobFilters
-          filters={filters}
-          setFilters={setFilters}
-          onReset={() => setFilters(defaultFilters)}
+      <div className="mb-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="md:col-span-2">
+          <Input
+            placeholder="Search by role, company, or skill"
+            value={filters.search}
+            onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value }))}
+            leftIcon={<Search size={16} />}
+          />
+        </div>
+        <Select
+          options={[{ label: 'All Job Types', value: '' }, ...JOB_TYPES]}
+          value={filters.jobTypes[0] || ''}
+          onChange={(e) =>
+            setFilters((f) => ({ ...f, jobTypes: e.target.value ? [e.target.value] : [] }))
+          }
         />
+        <Select
+          options={[{ label: 'All Levels', value: '' }, ...EXPERIENCE_LEVELS]}
+          value={filters.experienceLevel || ''}
+          onChange={(e) => setFilters((f) => ({ ...f, experienceLevel: e.target.value }))}
+        />
+      </div>
 
+      <div className="flex flex-col gap-6">
         <div className="flex-1">
           {loading ? (
             <div className="grid gap-4 sm:grid-cols-2">

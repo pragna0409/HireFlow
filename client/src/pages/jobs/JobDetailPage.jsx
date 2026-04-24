@@ -28,6 +28,8 @@ import Avatar from '../../components/ui/Avatar';
 import Spinner from '../../components/ui/Spinner';
 import Modal from '../../components/ui/Modal';
 import Textarea from '../../components/ui/Textarea';
+import Input from '../../components/ui/Input';
+import Select from '../../components/ui/Select';
 import { formatSalary, timeAgo } from '../../utils/formatters';
 import { JOB_STATUS_STYLES } from '../../utils/constants';
 import toast from 'react-hot-toast';
@@ -328,56 +330,156 @@ export default function JobDetailPage() {
       <Modal
         open={applyOpen}
         onClose={() => setApplyOpen(false)}
-        title="Apply for this job"
-        description={`${job.title} at ${company}`}
+        title="Application form"
+        description={`${job.title} | ${company} | ${job.location || 'Remote'} | ${job.jobType || 'Full-time'}`}
+        size="xl"
         footer={
-          <>
-            <Button variant="secondary" onClick={() => setApplyOpen(false)}>
-              Cancel
-            </Button>
-            <Button onClick={handleApply} loading={submitting} leftIcon={<Send size={14} />}>
-              Submit Application
-            </Button>
-          </>
+          <div className="flex w-full justify-between items-center">
+            <div className="text-sm font-medium text-emerald-600 dark:text-emerald-400">18% complete</div>
+            <div className="flex gap-2">
+              <Button variant="secondary" onClick={() => setApplyOpen(false)}>
+                Close
+              </Button>
+              <Button onClick={handleApply} loading={submitting} leftIcon={<Send size={14} />}>
+                Submit Application
+              </Button>
+            </div>
+          </div>
         }
       >
-        {/* Resume selector */}
-        <div className="mb-4">
-          <label className="block font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">
-            Resume
-          </label>
-          {resumes.length === 0 ? (
-            <div className="rounded-xl border border-dashed border-slate-200 dark:border-slate-700 p-4 text-center">
-              <FileText size={16} className="mx-auto mb-1.5 text-slate-300" />
-              <p className="font-sans text-xs text-slate-400">No resumes uploaded yet.</p>
-              <a href="/candidate/dashboard" className="mt-1 inline-block font-mono text-[11px] text-indigo-500 hover:underline">
-                Upload from dashboard →
-              </a>
+        <div className="space-y-8">
+          {/* Section 1: Personal Information */}
+          <section>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Personal Information</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">Basic identity and contact details used for the application.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input label="Full Name" required placeholder="John Doe" />
+              <Input label="Date of Birth" required type="date" placeholder="dd-mm-yyyy" />
+              <Select label="Gender" required options={[
+                { value: 'male', label: 'Male' },
+                { value: 'female', label: 'Female' },
+                { value: 'other', label: 'Other' },
+                { value: 'prefer_not_to_say', label: 'Prefer not to say' }
+              ]} placeholder="Select gender" />
+              <Input label="Mobile Number" required placeholder="+91 xxxxxxxxxx" />
+              <Input label="Email Address" required type="email" placeholder="john@example.com" />
+              <Input label="Nationality" required placeholder="Indian" defaultValue="Indian" />
+              <div className="md:col-span-2">
+                <Textarea label="Address" required rows={2} placeholder="Full address" />
+              </div>
+              <Input label="PAN / Aadhaar" required placeholder="ID Number" />
             </div>
-          ) : (
-            <div className="relative">
-              <select
-                value={selectedResume}
-                onChange={(e) => setSelectedResume(e.target.value)}
-                className="w-full appearance-none rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2.5 pr-9 font-sans text-sm text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                {resumes.map((r) => (
-                  <option key={r._id} value={r._id}>{r.name}</option>
-                ))}
-                <option value="">Use profile resume (default)</option>
-              </select>
-              <ChevronDown size={14} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            </div>
-          )}
-        </div>
+          </section>
 
-        <Textarea
-          label="Cover Letter (optional)"
-          rows={5}
-          value={coverLetter}
-          onChange={(e) => setCoverLetter(e.target.value)}
-          placeholder="Tell the recruiter why you're a great fit for this role…"
-        />
+          {/* Section 2: Preferences */}
+          <section>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Preferences</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">Choose your preferred work setup.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input label="Preferred Job Location" required placeholder="Bangalore" />
+              <Select label="Work Mode" required options={[
+                { value: 'remote', label: 'Remote' },
+                { value: 'hybrid', label: 'Hybrid' },
+                { value: 'onsite', label: 'On-site' }
+              ]} placeholder="Select work mode" />
+            </div>
+          </section>
+
+          {/* Section 3: Education */}
+          <section>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Education</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">Academic background and certifications.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input label="Highest Qualification" required placeholder="e.g. B.Tech in Computer Science" />
+              <Input label="College / University" required placeholder="Name of institution" />
+              <Input label="Year of Passing" required placeholder="YYYY" />
+              <Input label="CGPA / Percentage" required placeholder="e.g. 8.5 or 85%" />
+              <div className="md:col-span-2">
+                <Input label="Certifications / Courses" placeholder="AWS Cloud Practitioner, React Bootcamp, Data Structures..." />
+              </div>
+            </div>
+          </section>
+
+          {/* Section 4: Work Experience */}
+          <section>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Work Experience</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">Experience details, responsibilities, and capability summary.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input label="Previous Companies" placeholder="List previous employers" />
+              <Input label="Role / Designation" placeholder="e.g. Software Engineer" />
+              <Input label="Duration" placeholder="e.g. 2 years 6 months" />
+              <Input label="Skills" placeholder="React, Python, SQL" />
+              <Input label="Tools" placeholder="Excel, SAP, Figma" />
+              <div className="md:col-span-2">
+                <Textarea label="Key Responsibilities & Achievements" rows={3} placeholder="Describe your key contributions" />
+              </div>
+              <div className="md:col-span-2">
+                <Input label="Certificate Uploads" type="file" />
+              </div>
+            </div>
+          </section>
+
+          {/* Section 5: Documents */}
+          <section>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Documents</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">Upload the required candidate documents.</p>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Resume Upload (PDF/DOC)*</label>
+                {resumes.length === 0 ? (
+                  <div className="flex items-center gap-2">
+                    <input type="file" className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 dark:file:bg-indigo-500/10 dark:file:text-indigo-400" />
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <select
+                      value={selectedResume}
+                      onChange={(e) => setSelectedResume(e.target.value)}
+                      className="w-full appearance-none rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 pr-9 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    >
+                      {resumes.map((r) => (
+                        <option key={r._id} value={r._id}>{r.name}</option>
+                      ))}
+                      <option value="">Use profile resume (default)</option>
+                    </select>
+                    <ChevronDown size={14} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  </div>
+                )}
+              </div>
+              <Textarea
+                label="Cover Letter (Optional)"
+                rows={4}
+                value={coverLetter}
+                onChange={(e) => setCoverLetter(e.target.value)}
+                placeholder="Tell the recruiter why you're a great fit for this role…"
+              />
+            </div>
+          </section>
+
+          {/* Section 6: Additional Questions */}
+          <section>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">Additional Questions</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">Recruiter screening questions for better fit and intent.</p>
+            <div className="space-y-4">
+              <Textarea label="Why do you want this job?" required rows={2} />
+              <Textarea label="Why this company?" required rows={2} />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <Select label="Relevant experience?" options={[
+                  { value: 'yes', label: 'Yes' },
+                  { value: 'no', label: 'No' }
+                ]} />
+                <Select label="Can join within 30 days?" options={[
+                  { value: 'yes', label: 'Yes' },
+                  { value: 'no', label: 'No' }
+                ]} />
+                <Select label="Willing to relocate?" options={[
+                  { value: 'yes', label: 'Yes' },
+                  { value: 'no', label: 'No' }
+                ]} />
+              </div>
+            </div>
+          </section>
+        </div>
       </Modal>
     </div>
   );
