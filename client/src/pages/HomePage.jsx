@@ -55,8 +55,8 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.05 }}
               className="mt-6 text-4xl sm:text-5xl lg:text-[4.25rem] font-extrabold tracking-tighter text-slate-900 dark:text-white leading-[1.02]"
             >
-              Hire <span className="accent-serif font-bold">smarter</span>.<br />
-              Apply <span className="text-gradient">faster</span>.
+              Hire <span className="font-serif italic font-bold bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">smarter</span>.<br />
+              Apply <span className="font-bold bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">faster</span>.
             </motion.h1>
 
             <motion.p
@@ -314,7 +314,7 @@ export default function HomePage() {
             <RoleCard tone="photo" img={IMG.heroPerson} icon={<Briefcase size={20} />} title="Recruiters" desc="Post jobs, review applicants, move pipelines — in one view."
               bullets={['Create and manage job posts', 'Shortlist with one click', 'Filter by skills and experience']} cta="Post a job" onClick={() => navigate('/register')} />
             <RoleCard tone="photo" img={IMG.abstract} icon={<UserCog size={20} />} title="Admins" desc="Approve recruiters, audit activity, and watch the pulse of every hire."
-              bullets={['Approve or ban users', 'Platform-wide analytics', 'Moderate job postings']} cta="Sign up" onClick={() => setAdminModalOpen(true)} />
+              bullets={['Approve or ban users', 'Platform-wide analytics', 'Moderate job postings']} cta="Login" onClick={() => setAdminModalOpen(true)} />
           </div>
         </div>
       </section>
@@ -355,7 +355,7 @@ export default function HomePage() {
         title="NOTE ONLY FOR Elipsonic Testers"
         size="md"
         footer={
-          <Button onClick={() => { setAdminModalOpen(false); navigate('/register'); }}>
+          <Button onClick={() => { setAdminModalOpen(false); navigate('/login'); }}>
             OK
           </Button>
         }

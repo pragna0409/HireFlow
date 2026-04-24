@@ -11,7 +11,10 @@ export default function LoginPage() {
   const { login, isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || null;
+  let from = location.state?.from?.pathname || null;
+  if (from === '/') {
+    from = null;
+  }
 
   const [form, setForm] = useState({ email: '', password: '' });
   const [showPw, setShowPw] = useState(false);
